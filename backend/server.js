@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const { PORT } = process.env;
 
@@ -10,6 +11,9 @@ const app = express();
 
 //Usamos el middleware "morgan" para llevar un registro de peticiones http
 app.use(morgan('dev'));
+
+// Con este middleware podemos crear peticiones de front a back
+app.use(cors());
 
 //Deserializamos un body con formato "raw"
 app.use(express.json());
