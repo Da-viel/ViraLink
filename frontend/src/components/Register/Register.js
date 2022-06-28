@@ -2,12 +2,18 @@ import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useToken } from "../../TokenContext";
 
+import "./Register.css";
+
 const Register = () => {
   const [token] = useToken();
-
-  const [username, setUsername] = useState("");
+  const [alias, setAlias] = useState("");
+  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [biography, setBiography] = useState("");
+  const [picture, setPicture] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
@@ -25,9 +31,14 @@ const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username,
+          alias,
+          name,
+          firstName,
+          lastName,
           email,
           password,
+          biography,
+          picture,
         }),
       });
 
@@ -43,6 +54,7 @@ const Register = () => {
       setError(err.message);
     } finally {
       setLoading(false);
+      //return <Navigate replace to="/login" />;
     }
   };
 
@@ -58,18 +70,39 @@ const Register = () => {
     }
   });
 
-  // Si estamos logueados redireccionamos a la página principal.
-  if (token) return <Navigate to="/" />;
-
   return (
     <main className="Register">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Usuario:</label>
+        <label htmlFor="alias">Alias:</label>
         <input
           type="text"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          name="alias"
+          value={alias}
+          onChange={(e) => setAlias(e.target.value)}
+        />
+
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <label htmlFor="firstName">First name:</label>
+        <input
+          type="text"
+          name="firstName"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+
+        <label htmlFor="lastName">Last name:</label>
+        <input
+          type="text"
+          name="lastName"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
         />
 
         <label htmlFor="email">Email:</label>
@@ -86,6 +119,22 @@ const Register = () => {
           name="pass"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <label htmlFor="biography">Biography:</label>
+        <textarea
+          type="text"
+          name="biography"
+          value={biography}
+          onChange={(e) => setBiography(e.target.value)}
+        />
+
+        <label htmlFor="picture">Avatar:</label>
+        <input
+          type="file"
+          name="picture"
+          value={picture}
+          onChange={(e) => setPicture(e.target.value)}
         />
 
         <button disabled={loading}>Sign Up</button>
