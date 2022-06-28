@@ -69,7 +69,7 @@ const Register = () => {
       const t = setTimeout(() => {
         document.querySelector('p.Success').remove();
         return navigate('/login');
-      }, 2000);
+      }, 3000);
 
       return () => clearTimeout(t);
     }

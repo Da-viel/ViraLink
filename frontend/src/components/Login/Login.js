@@ -50,32 +50,47 @@ const Login = () => {
   };
 
   return (
-    <main className='Login'>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='email'>Email:</label>
-        <input
-          type='email'
-          name='email'
-          value={email || ''}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label htmlFor='pass'>Contraseña:</label>
-        <input
-          type='password'
-          name='pass'
-          value={password || ''}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <p>Not registered yet?</p>
-        <div className='Button'>
-          <NavLink to='/users'>click here</NavLink>
+    <div className='form'>
+      <div className='form-panel one'>
+        <div className='form-header'>
+          <h1>Account Login</h1>
         </div>
-
-        <button disabled={loading}>Log In</button>
-      </form>
-      {error && <p className='Error'>{error}</p>}
-    </main>
+        <div className='form-content'>
+          <form onSubmit={handleSubmit}>
+            <div className='form-group'>
+              <label htmlFor='username'>Email</label>
+              <input
+                type='email'
+                name='email'
+                value={email || ''}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='password'>Password</label>
+              <input
+                type='password'
+                name='pass'
+                value={password || ''}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className='form-group'>
+                <p className='form-singup'>
+                  Not registered yet? -
+                  <NavLink to='/users' className='loginLink'>
+                    click here
+                  </NavLink>
+                </p>
+              </div>
+            </div>
+            <div disabled={loading} className='form-group'>
+              <button type='submit'>Log In</button>
+            </div>
+          </form>
+        </div>
+        {error && <p className='Error'>{error}</p>}
+      </div>
+    </div>
   );
 };
 
