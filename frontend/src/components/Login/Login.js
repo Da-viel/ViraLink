@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useToken } from '../../TokenContext';
 
 const Login = () => {
@@ -20,7 +20,6 @@ const Login = () => {
     setLoading(true);
 
     try {
-      console.log('aqui1');
       const res = await fetch('http://localhost:4000/login', {
         method: 'POST',
         headers: {
@@ -32,7 +31,6 @@ const Login = () => {
           password,
         }),
       });
-      console.log('aqui');
 
       const body = await res.json();
 
@@ -67,6 +65,10 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <p>Not registered yet?</p>
+        <div className='Button'>
+          <NavLink to='/users'>click here</NavLink>
+        </div>
 
         <button disabled={loading}>Log In</button>
       </form>
