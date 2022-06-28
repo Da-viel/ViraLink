@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useToken } from '../../TokenContext';
 
 import './Register.css';
 
 const Register = () => {
+  let navigate = useNavigate();
   const [token] = useToken();
   const [alias, setAlias] = useState('');
   const [name, setName] = useState('');
@@ -58,7 +59,6 @@ const Register = () => {
       setError(err.message);
     } finally {
       setLoading(false);
-      //return <Navigate replace to="/login" />;
     }
   };
 
@@ -68,7 +68,8 @@ const Register = () => {
     if (successP) {
       const t = setTimeout(() => {
         document.querySelector('p.Success').remove();
-      }, 5000);
+        return navigate('/login');
+      }, 2000);
 
       return () => clearTimeout(t);
     }
