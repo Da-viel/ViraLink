@@ -7,7 +7,7 @@ const selectUserByIdQuery = async (idUser) => {
         connection = await getConnection();
 
         const [users] = await connection.query(
-            `SELECT picture FROM users WHERE id = ?`,
+            `SELECT image FROM users WHERE id = ?`,
             [idUser]
         );
 

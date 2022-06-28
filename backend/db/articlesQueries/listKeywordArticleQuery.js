@@ -1,13 +1,14 @@
 const getConnection = require('../getConnection');
 
-const listOneArticleQuery = async (idArticle) => {
+const listKeywordArticleQuery = async (keyword) => {
     let connection;
 
     try {
         connection = await getConnection();
 
+        const aux = `%${keyword}%`;
+
         let article;
-        console.log(idArticle);
 
         [article] = await connection.query(
             `
@@ -15,9 +16,12 @@ const listOneArticleQuery = async (idArticle) => {
             FROM articles
             LEFT JOIN ratings
             ON articles.id = ratings.idArticle
-            WHERE articles.id = ?
+            WHERE 
+            articles.description like ?
+            OR articles.title like ?
+            group by articles.id
             `,
-            [idArticle]
+            [aux, aux]
         );
         return article;
     } finally {
@@ -25,4 +29,4 @@ const listOneArticleQuery = async (idArticle) => {
     }
 };
 
-module.exports = listOneArticleQuery;
+module.exports = listKeywordArticleQuery;

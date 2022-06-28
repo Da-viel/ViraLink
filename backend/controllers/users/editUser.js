@@ -26,15 +26,15 @@ const editUser = async (req, res, next) => {
         // **Debemos poner el nombre 'image' a la imagen que estamos adjuntando desde el cliente**
         if (req.files && req.files.image) {
             //Comprobamos si el usuario ya tiene una foto en su perfil
-            const dataPicture = await selectUserByIdQuery(req.idUser);
+            const dataimage = await selectUserByIdQuery(req.idUser);
 
-            if (dataPicture.picture) await deletePhoto(dataPicture.picture); //Borramos la foto SI estaba almacenada anteriormente en nuestro servidor
+            if (dataimage.image) await deletePhoto(dataimage.image); //Borramos la foto SI estaba almacenada anteriormente en nuestro servidor
 
             //Guardamos la imagen llamando a la fucion de helpers
             const imgName = await storingPhoto(req.files.image);
 
             //Añadimos este nombre de imagen al objeto body
-            req.body.picture = imgName;
+            req.body.image = imgName;
         }
 
         //Pasamos el id del usuario y el body a la función correspondiente en la base de datos.

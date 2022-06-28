@@ -13,8 +13,6 @@ const insertArticleQuery = async (url, title, description, idUser) => {
             [url, idUser]
         );
 
-        console.log(selectArticle);
-
         if (selectArticle.length > 0)
             throw generateError('URL ya existente.', 409);
 

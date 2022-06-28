@@ -49,7 +49,7 @@ const {
     newArticle,
     deleteArticle,
     listArticles,
-    listOneArticle,
+    listKeywordArticle,
 } = require('./controllers/article');
 
 // Crea una nueva publicación.  ** Necesita token **
@@ -59,7 +59,7 @@ app.post('/article', authUser, newArticle);
 app.get('/article', authUser, listArticles);
 
 // Selecciona una publicacion, incluyendo información sobre el rating   ** Necesita token **
-app.get('/article/:idArticle', authUser, articleExists, listOneArticle);
+app.get('/article/:keyword', authUser, listKeywordArticle);
 
 // Elimina una publicación si eres el dueño.   ** Necesita token **
 app.delete('/article/:idArticle', authUser, articleExists, deleteArticle);

@@ -10,7 +10,7 @@ const insertUserQuery = async (
     email,
     password,
     biography,
-    picture
+    image
 ) => {
     let connection;
 
@@ -37,7 +37,7 @@ const insertUserQuery = async (
 
         // Creamos el usuario.
         const [newUser] = await connection.query(
-            `INSERT INTO users (alias, name, firstName, lastName, email, password, biography, picture) VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
+            `INSERT INTO users (alias, name, firstName, lastName, email, password, biography, image) VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 alias,
                 name,
@@ -46,7 +46,7 @@ const insertUserQuery = async (
                 email,
                 hashedPassword,
                 biography,
-                picture,
+                image,
             ]
         );
 

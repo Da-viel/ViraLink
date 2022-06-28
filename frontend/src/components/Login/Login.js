@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useToken } from "../../TokenContext";
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useToken } from '../../TokenContext';
 
-import "./Login.css";
+import './Login.css';
 
 const Login = () => {
   const [token, setToken] = useToken();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -22,10 +22,10 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:4000/login", {
-        method: "POST",
+      const res = await fetch('http://localhost:4000/login', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
 
         body: JSON.stringify({
@@ -36,7 +36,7 @@ const Login = () => {
 
       const body = await res.json();
 
-      if (body.status === "error") {
+      if (body.status === 'error') {
         setError(body.message);
       } else {
         setToken(body.data.token);
@@ -50,31 +50,31 @@ const Login = () => {
   };
 
   return (
-    <main className="Login">
+    <main className='Login'>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor='email'>Email:</label>
         <input
-          type="email"
-          name="email"
-          value={email}
+          type='email'
+          name='email'
+          value={email || ''}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label htmlFor="pass">Contraseña:</label>
+        <label htmlFor='pass'>Contraseña:</label>
         <input
-          type="password"
-          name="pass"
-          value={password}
+          type='password'
+          name='pass'
+          value={password || ''}
           onChange={(e) => setPassword(e.target.value)}
         />
         <p>Not registered yet?</p>
-        <div className="Button">
-          <NavLink to="/users">click here</NavLink>
+        <div className='Button'>
+          <NavLink to='/users'>click here</NavLink>
         </div>
 
         <button disabled={loading}>Log In</button>
       </form>
-      {error && <p className="Error">{error}</p>}
+      {error && <p className='Error'>{error}</p>}
     </main>
   );
 };

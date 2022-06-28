@@ -13,17 +13,30 @@ const newUser = async (req, res, next) => {
             req.body;
 
         // Si faltan campos lanzamos un error.
-        if (!alias || !name || !firstName || !lastName || !email || !password) {
+        if (
+            !alias ||
+            alias === '' ||
+            !name ||
+            name === '' ||
+            !firstName ||
+            firstName === '' ||
+            !lastName ||
+            lastName === '' ||
+            !email ||
+            email === '' ||
+            !password ||
+            password === ''
+        ) {
             throw generateError('Faltan campos', 400);
         }
 
         //En caso de que exista una imagen, la guardamos
         // **Debemos poner el nombre 'image' a la imagen que estamos adjuntando desde el cliente**
         //Si el usuario no ha subido una imagen, añadiremos una imagen por defecto
-        if (req.files && req.files.imageg) {
+        if (req.files && req.files.image) {
             const imgName = await storingPhoto(req.files.image);
             //Añadimos el nombre de imagen al objeto body
-            req.body.picture = imgName;
+            req.body.image = imgName;
         } else {
             const uploadsDir = path.join('./', 'uploads');
             await createPathIfNotExists(uploadsDir);
@@ -31,7 +44,7 @@ const newUser = async (req, res, next) => {
             const imgName = `default_${alias}_image.jpg`;
             const imgPath = path.join(uploadsDir, imgName);
             await image.toFile(imgPath);
-            req.body.picture = imgName;
+            req.body.image = imgName;
         }
 
         // Creamos un usuario en la base de datos y obtenemos su id.
@@ -43,7 +56,7 @@ const newUser = async (req, res, next) => {
             email,
             password,
             biography,
-            req.body.picture
+            req.body.image
         );
 
         res.send({
