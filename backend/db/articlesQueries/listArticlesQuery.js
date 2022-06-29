@@ -12,12 +12,13 @@ const listArticlesQuery = async () => {
         //una clasificación de los artículos con su correspondiente rating.
         [articles] = await connection.query(
             `
-            SELECT  url,Title,Description , ROUND(AVG(rating),2) AS "Rating_articles"
+            SELECT  articles.id,url,Title,Description,articles.createdAt, ROUND(AVG(rating),1) AS "Rating_articles", users.alias, users.image
             FROM articles
                 LEFT JOIN ratings
                     ON articles.id = ratings.idArticle
-            GROUP BY url, title, description
-            ORDER BY Rating_articles DESC;
+					JOIN users ON  articles.idUser = users.id
+            GROUP BY articles.id, url, title, description, articles.createdAt
+            ORDER BY articles.createdAt DESC;
             `
         );
         return articles;

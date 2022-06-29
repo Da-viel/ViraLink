@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useToken } from '../../TokenContext';
 
 import './Login.css';
 
 const Login = () => {
   const [token, setToken] = useToken();
-
+  let navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -46,6 +46,7 @@ const Login = () => {
       setError(err.message);
     } finally {
       setLoading(false);
+      return navigate('/articles');
     }
   };
 
@@ -56,7 +57,7 @@ const Login = () => {
           <h1>Account Login</h1>
         </div>
         <div className='form-content'>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className='form-group'>
               <label htmlFor='username'>Email</label>
               <input
@@ -84,7 +85,9 @@ const Login = () => {
               </div>
             </div>
             <div disabled={loading} className='form-group'>
-              <button type='submit'>Log In</button>
+              <button type='submit' onClick={handleSubmit}>
+                Log In
+              </button>
             </div>
           </form>
         </div>

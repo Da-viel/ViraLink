@@ -21,6 +21,9 @@ app.use(express.json());
 //Deserializamos un body con formato "form-data"
 app.use(fileUpload());
 
+// Indicamos a express en que directorio están los archivos estáticos.
+app.use(express.static('uploads'));
+
 /**
  * ########################
  * ## Endpoints Usuarios ##
