@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import { useToken } from "../../context/TokenContext";
 import Navigation from "../Navigation/Navigation";
 
-import "./Articles.css";
-const Articles = () => {
+import "./ArticleKeyword.css";
+
+const ArticleKeyword = ({ keyword }) => {
   const [token] = useToken();
   const [loading, setLoading] = useState(false);
-  const [articles, setarticles] = useState(null);
+  const [articleKeyword, setArticleKeyword] = useState(null);
   const [update, setUpdate] = useState(false);
   const [error, setError] = useState(null);
 
-  const getArticles = async () => {
+  const getArticleKeyword = async () => {
     setLoading(true);
 
     // Vaciamos el error.
@@ -19,18 +20,21 @@ const Articles = () => {
     // Si hay token nos interesa mandarlo para comprobar los articles de los que somos dueños.
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND}/article`, {
-        method: "GET",
-        headers: {
-          Authorization: token,
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND}/article/${keyword}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
 
       const body = await res.json();
       console.log(body.data);
       if (body.status === "error") setError(body.message);
 
-      setarticles(body.data.articles);
+      setArticleKeyword(body.data.articles);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -41,7 +45,7 @@ const Articles = () => {
   // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
   // cargue de forma automática la lista de articles.
   useEffect(() => {
-    getArticles();
+    getArticleKeyword();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [update]);
 
@@ -51,12 +55,10 @@ const Articles = () => {
         <Navigation />
         {error && <p className="Error">{error}</p>}
 
-        {articles && (
+        {articleKeyword && (
           <ul className="articleList">
-            {articles.map((article) => {
-              const dateTime = new Date(article.createdAt).toLocaleString(
-                "es-ES"
-              );
+            {articleKeyword.map((article) => {
+              const dateTime = new Date(article.createdAt).toLocaleString();
 
               return (
                 <li key={article.id} data-id={article.id}>
@@ -64,7 +66,7 @@ const Articles = () => {
                     <p>{article.Title}</p>
                     {
                       <time dateTime={dateTime}>
-                        {new Date(article.createdAt).toLocaleString("es-ES")}
+                        {new Date(article.createdAt).toLocaleString()}
                       </time>
                     }
                   </header>
@@ -92,4 +94,4 @@ const Articles = () => {
   );
 };
 
-export default Articles;
+export default ArticleKeyword;

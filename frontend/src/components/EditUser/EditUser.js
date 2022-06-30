@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
 
-import "./Register.css";
+import "./EditUser.css";
 
-const Register = () => {
+const EditUser = () => {
   let navigate = useNavigate();
   const [token] = useToken();
   const [alias, setAlias] = useState("");
@@ -43,7 +43,7 @@ const Register = () => {
       formData.append("image", selectedFile);
 
       const res = await fetch(`${process.env.REACT_APP_BACKEND}/users`, {
-        method: "POST",
+        method: "PUT",
         body: formData,
       });
 
@@ -68,7 +68,7 @@ const Register = () => {
     if (successP) {
       const t = setTimeout(() => {
         document.querySelector("p.Success").remove();
-        return navigate("/login");
+        return navigate("/articles");
       }, 3000);
 
       return () => clearTimeout(t);
@@ -76,7 +76,7 @@ const Register = () => {
   });
 
   return (
-    <main className="Register">
+    <main className="EditUSer">
       <form onSubmit={handleSubmit}>
         <label htmlFor="alias">Alias:</label>
         <input
@@ -141,16 +141,18 @@ const Register = () => {
             setSelectedFile(e.target.files[0]);
           }}
         />
-
-        <div className="Button">
-          <NavLink to="/login">Back</NavLink>
-        </div>
-        <button disabled={loading}>Sign Up</button>
+        <button disabled={loading}>Submit</button>
       </form>
+
+      <button
+        className="home"
+        onClick={() => <Link to="/articles"> 🏠</Link>}
+      ></button>
+
       {error && <p className="Error">{error}</p>}
       {message && <p className="Success">{message}</p>}
     </main>
   );
 };
 
-export default Register;
+export default EditUser;

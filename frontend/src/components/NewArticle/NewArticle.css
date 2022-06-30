@@ -1,0 +1,16 @@
+form.NewArticle {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+form.NewArticle > input,
+form.NewArticle > textarea {
+  margin-bottom: 1 rem;
+  padding: 0.4rem;
+}
+
+form.NewArticle > button {
+  width: 50%;
+  margin: 1rem;
+}
