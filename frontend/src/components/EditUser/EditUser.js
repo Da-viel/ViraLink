@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
+import { useModal } from "../../context/ModalContext";
 
 import "./EditUser.css";
 
 const EditUser = () => {
   let navigate = useNavigate();
+  const [, setModal] = useModal();
   const [token] = useToken();
   const [alias, setAlias] = useState("");
   const [name, setName] = useState("");
@@ -144,10 +146,9 @@ const EditUser = () => {
         <button disabled={loading}>Submit</button>
       </form>
 
-      <button
-        className="home"
-        onClick={() => <Link to="/articles"> 🏠</Link>}
-      ></button>
+      <button className="home" onClick={() => setModal(null)}>
+        🏠
+      </button>
 
       {error && <p className="Error">{error}</p>}
       {message && <p className="Success">{message}</p>}

@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
 import Navigation from "../Navigation/Navigation";
+import Accordion from "../Accordion/Accordion";
+import EditUser from "../EditUser/EditUser";
+import { useModal } from "../../context/ModalContext";
 
 import "./Articles.css";
+import { NavLink } from "react-router-dom";
+
 const Articles = () => {
-  const [token] = useToken();
+  const [token, setToken] = useToken();
   const [loading, setLoading] = useState(false);
   const [articles, setarticles] = useState(null);
   const [update, setUpdate] = useState(false);
   const [error, setError] = useState(null);
+  const [, setModal] = useModal();
 
   const getArticles = async () => {
     setLoading(true);
@@ -49,6 +56,20 @@ const Articles = () => {
     <>
       <main className="articleSearch">
         <Navigation />
+
+        <Accordion>
+          <button
+            onClick={() => {
+              localStorage.removeItem("token");
+              setToken(null);
+              <Navigate to="/login" />;
+            }}
+          >
+            Log Out
+          </button>
+          <button onClick={() => setModal(<EditUser />)}>Edit Profile</button>
+        </Accordion>
+
         {error && <p className="Error">{error}</p>}
 
         {articles && (
