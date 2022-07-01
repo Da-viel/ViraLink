@@ -11,11 +11,11 @@ const Navigation = () => {
   return (
     <div className="navigation">
       <div className="home">
-        <button onClick={handleHome}>:house:</button>
+        <button onClick={handleHome}>🏠</button>
       </div>
       <div className="search">
         {" "}
-        <button>:mag_right:</button>
+        <button>🔎</button>
       </div>
       <div className="newArticle">
         <button onClick={() => setModal(<NewArticle />)}>

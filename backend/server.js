@@ -61,6 +61,7 @@ const {
     deleteArticle,
     listArticles,
     listKeywordArticle,
+    listArticleById,
 } = require('./controllers/article');
 
 // Crea una nueva publicación.  ** Necesita token **
@@ -69,8 +70,11 @@ app.post('/article', authUser, newArticle);
 // Seleccion de TODAS las publicaciones, incluyendo información sobre el rating   ** Necesita token **
 app.get('/article', authUser, listArticles);
 
-// Selecciona una publicacion, incluyendo información sobre el rating   ** Necesita token **
+// Busca una publicación basada en la palabra clave  ** Necesita token **
 app.get('/article/:keyword', authUser, listKeywordArticle);
+
+// Selecciona una publicación basada en su identificador(id)  ** Necesita token **
+app.get('/article/:idArticle/single', authUser, listArticleById);
 
 // Elimina una publicación si eres el dueño.   ** Necesita token **
 app.delete('/article/:idArticle', authUser, articleExists, deleteArticle);

@@ -147,7 +147,7 @@ const EditUser = () => {
       </form>
 
       <button className="home" onClick={() => setModal(null)}>
-        🏠
+        Back
       </button>
 
       {error && <p className="Error">{error}</p>}

@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useToken } from "../../context/TokenContext";
 import Navigation from "../Navigation/Navigation";
 import RatingArticles from "../RatingArticles/RatingArticles";
+import DeleteArticle from "../DeleteArticle/DeleteArticle";
+import { useNavigate } from "react-router-dom";
 
 import "./Articles.css";
 
 const Articles = () => {
+  let navigate = useNavigate();
   const [token, setToken] = useToken();
   const [loading, setLoading] = useState(false);
   const [articles, setarticles] = useState(null);
@@ -80,12 +83,18 @@ const Articles = () => {
                     <footer>
                       {article.Rating_articles && (
                         <div className="rating">
-                          <p>Rating:{article.Rating_articles}</p>
+                          <p>Avg. rating: {article.Rating_articles}</p>
                         </div>
                       )}
                       <div className="delete">
-                        <button>:wastebasket:</button>
+                        <DeleteArticle idArticle={article.id} />
                       </div>
+                      <button
+                        onClick={() => navigate(`/article/${article.id}`)}
+                      >
+                        Read more...
+                      </button>
+
                       <RatingArticles />
                     </footer>
                   </div>

@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { useToken } from "../../context/TokenContext";
 import Navigation from "../Navigation/Navigation";
 
-import "./ArticleKeyword.css";
+import "./SingleArticle.css";
 
-const ArticleKeyword = ({ keyword }) => {
+const SingleArticle = ({ idArticle }) => {
   const [token] = useToken();
   const [loading, setLoading] = useState(false);
-  const [articleKeyword, setArticleKeyword] = useState(null);
+  const [article, setArticle] = useState(null);
   const [update, setUpdate] = useState(false);
   const [error, setError] = useState(null);
 
-  const getArticleKeyword = async () => {
+  const getArticleById = async () => {
     setLoading(true);
 
     // Vaciamos el error.
@@ -21,7 +21,7 @@ const ArticleKeyword = ({ keyword }) => {
 
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND}/article/${keyword}`,
+        `${process.env.REACT_APP_BACKEND}/article/${idArticle}/single`,
         {
           method: "GET",
           headers: {
@@ -34,7 +34,7 @@ const ArticleKeyword = ({ keyword }) => {
       console.log(body.data);
       if (body.status === "error") setError(body.message);
 
-      setArticleKeyword(body.data.articles);
+      setArticle(body.data.article);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -45,19 +45,19 @@ const ArticleKeyword = ({ keyword }) => {
   // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
   // cargue de forma automática la lista de articles.
   useEffect(() => {
-    getArticleKeyword();
+    getArticleById();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [update]);
 
   return (
     <>
-      <main className="articleSearch">
+      <main className="ArticleById">
         <Navigation />
         {error && <p className="Error">{error}</p>}
 
-        {articleKeyword && (
+        {article && (
           <ul className="articleList">
-            {articleKeyword.map((article) => {
+            {article.map((article) => {
               const dateTime = new Date(article.createdAt).toLocaleString();
 
               return (
@@ -94,4 +94,4 @@ const ArticleKeyword = ({ keyword }) => {
   );
 };
 
-export default ArticleKeyword;
+export default SingleArticle;

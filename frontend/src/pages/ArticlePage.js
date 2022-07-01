@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import ArticleKeyword from "../components/ArticleKeyword/ArticleKeyword";
+import SingleArticle from "../components/SingleArticle/SingleArticle";
 
 const ArticlePage = () => {
   const params = useParams();
-  console.log(params);
+
   return (
     <section>
-      <ArticleKeyword keyword={params} />
+      <SingleArticle idArticle={params.idArticle} />
     </section>
   );
 };
