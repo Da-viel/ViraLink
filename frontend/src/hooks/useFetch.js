@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useToken } from "../context/TokenContext";
 
-const useFetch = () => {
+const useFetch = (url) => {
   const [token] = useToken();
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [status, setStatus] = useState("Loading");
 
   useEffect(() => {

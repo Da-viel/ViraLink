@@ -30,7 +30,12 @@ app.use(express.static('uploads'));
  * ########################
  */
 const authUser = require('./middlewares/authUser');
-const { newUser, loginUser, editUser } = require('./controllers/users');
+const {
+    newUser,
+    loginUser,
+    editUser,
+    getOwnUser,
+} = require('./controllers/users');
 
 // Crear un nuevo usuario
 app.post('/users', newUser);
@@ -40,6 +45,9 @@ app.post('/login', loginUser);
 
 //Editar el perfil del usuario.   ** Necesita token **
 app.put('/users', authUser, editUser);
+
+// Información sobre el usuario del token.  ** Necesita token **
+app.get('/users', authUser, getOwnUser);
 
 /**
  * #############################
