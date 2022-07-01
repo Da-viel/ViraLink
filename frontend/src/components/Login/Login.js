@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useToken } from "../../context/TokenContext";
+import { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useToken } from '../../context/TokenContext';
 
-import "./Login.css";
+import './Login.css';
 
 const Login = () => {
   const [token, setToken] = useToken();
   let navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,9 +23,9 @@ const Login = () => {
 
     try {
       const res = await fetch(`${process.env.REACT_APP_BACKEND}/login`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
 
         body: JSON.stringify({
@@ -36,7 +36,7 @@ const Login = () => {
 
       const body = await res.json();
 
-      if (body.status === "error") {
+      if (body.status === 'error') {
         setError(body.message);
       } else {
         setToken(body.data.token);
@@ -46,52 +46,52 @@ const Login = () => {
       setError(err.message);
     } finally {
       setLoading(false);
-      return navigate("/articles");
+      return navigate('/articles');
     }
   };
 
   return (
-    <div className="form">
-      <div className="form-panel one">
-        <div className="form-header">
+    <div className='form'>
+      <div className='form-panel'>
+        <div className='form-header'>
           <h1>Account Login</h1>
         </div>
-        <div className="form-content">
+        <div className='form-content'>
           <form>
-            <div className="form-group">
-              <label htmlFor="username">Email</label>
+            <div className='form-group'>
+              <label htmlFor='username'>Email</label>
               <input
-                type="email"
-                name="email"
-                value={email || ""}
+                type='email'
+                name='email'
+                value={email || ''}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
+            <div className='form-group'>
+              <label htmlFor='password'>Password</label>
               <input
-                type="password"
-                name="pass"
-                value={password || ""}
+                type='password'
+                name='pass'
+                value={password || ''}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <div className="form-group">
-                <p className="form-singup">
+              <div className='form-group'>
+                <p className='form-singup'>
                   Not registered yet? -
-                  <NavLink to="/users" className="loginLink">
+                  <NavLink to='/users' className='loginLink'>
                     click here
                   </NavLink>
                 </p>
               </div>
             </div>
-            <div disabled={loading} className="form-group">
-              <button type="submit" onClick={handleSubmit}>
+            <div disabled={loading} className='form-group'>
+              <button type='submit' onClick={handleSubmit}>
                 Log In
               </button>
             </div>
           </form>
         </div>
-        {error && <p className="Error">{error}</p>}
+        {error && <p className='Error'>{error}</p>}
       </div>
     </div>
   );

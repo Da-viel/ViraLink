@@ -1,9 +1,9 @@
-import "./Header.css";
+import './Header.css';
 
 const Header = () => {
   return (
-    <div className="logo">
-      <img src="/logo732.png " alt="logo ViraLink" />
+    <div className='logo'>
+      <img src='/logo732.png ' alt='logo ViraLink' />
     </div>
   );
 };

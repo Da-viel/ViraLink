@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useToken } from "../../context/TokenContext";
+import { useState, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useToken } from '../../context/TokenContext';
 
-import "./Register.css";
+import './Register.css';
 
 const Register = () => {
   let navigate = useNavigate();
   const [token] = useToken();
-  const [alias, setAlias] = useState("");
-  const [name, setName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [biography, setBiography] = useState("");
+  const [alias, setAlias] = useState('');
+  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [biography, setBiography] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
 
   const [loading, setLoading] = useState(false);
@@ -33,23 +33,23 @@ const Register = () => {
       const formData = new FormData();
 
       // Pusheamos las propiedades con append.
-      formData.append("alias", alias);
-      formData.append("name", name);
-      formData.append("firstName", firstName);
-      formData.append("lastName", lastName);
-      formData.append("email", email);
-      formData.append("password", password);
-      formData.append("biography", biography);
-      formData.append("image", selectedFile);
+      formData.append('alias', alias);
+      formData.append('name', name);
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('biography', biography);
+      formData.append('image', selectedFile);
 
       const res = await fetch(`${process.env.REACT_APP_BACKEND}/users`, {
-        method: "POST",
+        method: 'POST',
         body: formData,
       });
 
       const body = await res.json();
 
-      if (body.status === "error") {
+      if (body.status === 'error') {
         setError(body.message);
       } else {
         setMessage(body.message);
@@ -63,12 +63,12 @@ const Register = () => {
   };
 
   useEffect(() => {
-    const successP = document.querySelector("p.Success");
+    const successP = document.querySelector('p.Success');
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector("p.Success").remove();
-        return navigate("/login");
+        document.querySelector('p.Success').remove();
+        return navigate('/login');
       }, 3000);
 
       return () => clearTimeout(t);
@@ -76,79 +76,81 @@ const Register = () => {
   });
 
   return (
-    <main className="Register">
+    <main className='Register'>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="alias">Alias:</label>
+        <label htmlFor='alias'>Alias:</label>
         <input
-          type="text"
-          name="alias"
-          value={alias || ""}
+          type='text'
+          name='alias'
+          value={alias || ''}
           onChange={(e) => setAlias(e.target.value)}
         />
 
-        <label htmlFor="name">Name:</label>
+        <label htmlFor='name'>Name:</label>
         <input
-          type="text"
-          name="name"
-          value={name || ""}
+          type='text'
+          name='name'
+          value={name || ''}
           onChange={(e) => setName(e.target.value)}
         />
 
-        <label htmlFor="firstName">First name:</label>
+        <label htmlFor='firstName'>First name:</label>
         <input
-          type="text"
-          name="firstName"
-          value={firstName || ""}
+          type='text'
+          name='firstName'
+          value={firstName || ''}
           onChange={(e) => setFirstName(e.target.value)}
         />
 
-        <label htmlFor="lastName">Last name:</label>
+        <label htmlFor='lastName'>Last name:</label>
         <input
-          type="text"
-          name="lastName"
-          value={lastName || ""}
+          type='text'
+          name='lastName'
+          value={lastName || ''}
           onChange={(e) => setLastName(e.target.value)}
         />
 
-        <label htmlFor="email">Email:</label>
+        <label htmlFor='email'>Email:</label>
         <input
-          type="email"
-          name="email"
-          value={email || ""}
+          type='email'
+          name='email'
+          value={email || ''}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label htmlFor="pass">Contraseña:</label>
+        <label htmlFor='pass'>Contraseña:</label>
         <input
-          type="password"
-          name="pass"
-          value={password || ""}
+          type='password'
+          name='pass'
+          value={password || ''}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <label htmlFor="biography">Biography:</label>
+        <label htmlFor='biography'>Biography:</label>
         <textarea
-          type="text"
-          name="biography"
-          value={biography || ""}
+          type='text'
+          name='biography'
+          value={biography || ''}
           onChange={(e) => setBiography(e.target.value)}
         />
 
-        <label htmlFor="image">Avatar:</label>
+        <label htmlFor='image'>Avatar:</label>
         <input
-          type="file"
+          type='file'
           onChange={(e) => {
             setSelectedFile(e.target.files[0]);
           }}
         />
 
-        <div className="Button">
-          <NavLink to="/login">Back</NavLink>
+        <div className='Button'>
+          <NavLink to='/login'>Back</NavLink>
         </div>
-        <button disabled={loading}>Sign Up</button>
+        <button className='submit' disabled={loading}>
+          Sign Up
+        </button>
       </form>
-      {error && <p className="Error">{error}</p>}
-      {message && <p className="Success">{message}</p>}
+      {error && <p className='Error'>{error}</p>}
+      {message && <p className='Success'>{message}</p>}
     </main>
   );
 };
