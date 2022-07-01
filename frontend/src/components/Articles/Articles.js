@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
 import Navigation from "../Navigation/Navigation";
 import Accordion from "../Accordion/Accordion";
 import EditUser from "../EditUser/EditUser";
+import RatingArticles from "../RatingArticles/RatingArticles";
 import { useModal } from "../../context/ModalContext";
 
 import "./Articles.css";
-import { NavLink } from "react-router-dom";
 
 const Articles = () => {
   const [token, setToken] = useToken();
+  let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [articles, setarticles] = useState(null);
   const [update, setUpdate] = useState(false);
@@ -22,8 +23,6 @@ const Articles = () => {
 
     // Vaciamos el error.
     setError(null);
-
-    // Si hay token nos interesa mandarlo para comprobar los articles de los que somos dueños.
 
     try {
       const res = await fetch(`${process.env.REACT_APP_BACKEND}/article`, {
@@ -56,13 +55,12 @@ const Articles = () => {
     <>
       <main className="articleSearch">
         <Navigation />
-
         <Accordion>
           <button
             onClick={() => {
               localStorage.removeItem("token");
               setToken(null);
-              <Navigate to="/login" />;
+              return navigate("/articles");
             }}
           >
             Log Out
@@ -102,7 +100,13 @@ const Articles = () => {
                       {article.url}
                     </a>
                   </div>
-                  {article.Rating_articles && <p>{article.Rating_articles}</p>}
+                  <footer className="footerArticles">
+                    {article.Rating_articles && (
+                      <p>Rating:{article.Rating_articles}</p>
+                    )}
+                    <button>🗑️</button>
+                    <RatingArticles />
+                  </footer>
                 </li>
               );
             })}
