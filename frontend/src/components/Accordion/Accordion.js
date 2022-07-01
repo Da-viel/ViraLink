@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Profile from "../Profile/Profile";
 import "./Accordion.css";
 
 const Accordion = ({ children }) => {
@@ -9,7 +10,7 @@ const Accordion = ({ children }) => {
   return (
     <div className="Accordion">
       <button className="Avatar" onClick={handleClick}>
-        Avatar Usuario
+        <Profile />
       </button>
       {show && <div>{children}</div>}
     </div>
