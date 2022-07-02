@@ -1,197 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+.container {
+  margin-top: 10%;
+  font-size: 2vh;
+}
+
 html {
-  width: 100%;
+  background-color: #d3d6dc;
 }
 
-.form {
-  z-index: 15;
-  position: relative;
-  background: #ffffff;
-  width: 90%;
-  border-radius: 4px;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
-  box-sizing: border-box;
-  margin: 5%;
-  overflow: hidden;
-}
-.form-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0 0 20px;
-}
-.form-group:last-child {
-  margin: 0;
-}
-.form-group label {
-  display: block;
-  margin: 0 0 10px;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-}
-.form-group input {
-  outline: none;
-  display: block;
-  background: rgba(0, 0, 0, 0.1);
-  width: 100%;
-  border: 0;
-  border-radius: 4px;
-  box-sizing: border-box;
-  padding: 12px 20px;
-  color: rgba(0, 0, 0, 0.6);
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: 500;
-  line-height: inherit;
-  transition: 0.3s ease;
-}
-.form-group input:focus {
-  color: rgba(0, 0, 0, 1);
-}
-.form-group button {
-  outline: none;
-  background: #00afef;
-  width: 100%;
-  border: 0;
-  border-radius: 4px;
-  padding: 12px 20px;
-  color: #ffffff;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: 500;
-  line-height: inherit;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin-left: 35%;
-  margin-right: 35%;
-}
-.form-group .form-singup {
-  display: inline-block;
-  width: auto;
-  margin: 0 10px 0 0;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-  padding-top: 1rem;
-}
 .loginLink {
-  text-decoration: none;
-  padding-left: 0.2rem;
+  padding-left: 0.25rem;
+  color: #f58634;
 }
 
-.form-group .form-recovery {
+.container button {
+  background-color: #00afef;
+  color: white;
+}
+
+.container h1 {
   color: #00afef;
-  font-size: 12px;
-  text-decoration: none;
 }
 
-.form-panel.one:before {
-  content: '';
-  display: block;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s ease;
-}
-.form-panel.one.hidden:before {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-}
-.form-header {
-  margin: 0 0 40px;
-}
-.form-header h1 {
-  padding: 4px 0;
-  color: #00afef;
-  font-size: 24px;
-  font-weight: 700;
-  text-transform: uppercase;
+.error {
+  text-align: center;
+  color: rgb(201, 0, 0);
+  margin-top: 1rem;
 }
 
-@media (min-width: 0px) and (max-width: 780px) {
-  .form {
-    width: 90%;
-    margin-top: 2rem;
+@media screen and (min-device-width: 992px) {
+  .container {
+    margin-top: 5%;
+    padding: 0rem;
+    width: 70%;
   }
-  .form-group p.form-singup {
-    font-size: 16px;
-  }
-  div.form-group label {
-    font-size: 1.1rem;
-  }
-
-  div.form-panel {
-    padding: 1rem;
-  }
-}
-
-@media (min-width: 781px) and (max-width: 1280px) {
-  .form {
-    width: 60%;
-    margin-right: 20%;
-    margin-left: 20%;
-    padding-right: 6rem;
-    padding-left: 6rem;
-  }
-  .form-group p.form-singup {
-    font-size: 18px;
-  }
-  div.form-group label {
-    font-size: 1rem;
-  }
-
-  div.form-panel {
-    padding: 1.2rem;
-  }
-  .form-group button {
-    font-size: 1.1rem;
-  }
-}
-
-@media (min-width: 781px) and (max-width: 1280px) {
-  .form {
-    width: 50%;
-    margin-right: 25%;
-    margin-left: 25%;
-    padding-right: 2rem;
+  .container form,
+  .container h1 {
+    margin-top: 5%;
     padding-left: 2rem;
+    padding-right: 2rem;
   }
-  .form-group p.form-singup {
-    font-size: 18px;
+  .container h1 {
+    text-align: center;
   }
-  div.form-group label {
-    font-size: 1rem;
+  .container input {
+    padding: 0.25rem;
   }
-
-  div.form-panel {
-    padding: 1.2rem;
-  }
-  .form-group button {
-    font-size: 1.1rem;
-  }
-}
-
-@media (min-width: 1281px) {
-  .form {
-    width: 50%;
-    margin-right: 25%;
-    margin-left: 25%;
-  }
-  .form-group p.form-singup {
-    font-size: 16px;
-  }
-  div.form-group label {
-    font-size: 1.1rem;
-  }
-
-  div.form-panel {
-    padding: 1.2rem;
-  }
-  .form-group button {
-    font-size: 1.1rem;
+  .container input::placeholder {
+    font-size: 0.65rem;
+    padding-left: 0.25rem;
   }
 }
