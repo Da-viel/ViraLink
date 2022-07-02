@@ -1,15 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 .container {
   margin-top: 10%;
   font-size: 2vh;
 }
 
 html {
-  background-color: #d3d6dc;
+  background-color: #f3f7ff;
 }
 
 .loginLink {
-  padding-left: 0.25rem;
   color: #f58634;
 }
 
@@ -31,8 +29,6 @@ html {
 @media screen and (min-device-width: 992px) {
   .container {
     margin-top: 5%;
-    padding: 0rem;
-    width: 70%;
   }
   .container form,
   .container h1 {
@@ -44,7 +40,7 @@ html {
     text-align: center;
   }
   .container input {
-    padding: 0.25rem;
+    padding: 0.5rem;
   }
   .container input::placeholder {
     font-size: 0.65rem;

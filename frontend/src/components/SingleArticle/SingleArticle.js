@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useToken } from "../../context/TokenContext";
-import Navigation from "../Navigation/Navigation";
+import { useEffect, useState } from 'react';
+import { useToken } from '../../context/TokenContext';
+import Navigation from '../Navigation/Navigation';
 
-import "./SingleArticle.css";
+import './SingleArticle.css';
 
 const SingleArticle = ({ idArticle }) => {
   const [token] = useToken();
@@ -23,7 +23,7 @@ const SingleArticle = ({ idArticle }) => {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND}/article/${idArticle}/single`,
         {
-          method: "GET",
+          method: 'GET',
           headers: {
             Authorization: token,
           },
@@ -31,8 +31,8 @@ const SingleArticle = ({ idArticle }) => {
       );
 
       const body = await res.json();
-      console.log(body.data);
-      if (body.status === "error") setError(body.message);
+
+      if (body.status === 'error') setError(body.message);
 
       setArticle(body.data.article);
     } catch (err) {
@@ -51,12 +51,12 @@ const SingleArticle = ({ idArticle }) => {
 
   return (
     <>
-      <main className="ArticleById">
+      <main className='ArticleById'>
         <Navigation />
-        {error && <p className="Error">{error}</p>}
+        {error && <p className='Error'>{error}</p>}
 
         {article && (
-          <ul className="articleList">
+          <ul className='articleList'>
             {article.map((article) => {
               const dateTime = new Date(article.createdAt).toLocaleString();
 
@@ -79,7 +79,7 @@ const SingleArticle = ({ idArticle }) => {
                   </div>
                   <div>
                     <p>{article.Description}</p>
-                    <a href={`https://${article.url}`} target="blank">
+                    <a href={`https://${article.url}`} target='blank'>
                       {article.url}
                     </a>
                   </div>

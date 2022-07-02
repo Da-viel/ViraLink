@@ -13,11 +13,3 @@ div.allHeader {
   align-content: center;
   margin-top: 0.5rem;
 }
-div.avatarHeader {
-  padding-top: 9%;
-}
-div.avatarHeader button {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 100%;
-}

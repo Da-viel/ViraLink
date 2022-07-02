@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Profile from "../Profile/Profile";
-import "./Accordion.css";
+import { useState } from 'react';
+import Profile from '../Profile/Profile';
+import './Accordion.css';
 
 const Accordion = ({ children }) => {
   const [show, setShow] = useState(false);
@@ -8,10 +8,12 @@ const Accordion = ({ children }) => {
   const handleClick = () => setShow(!show);
 
   return (
-    <div className="Accordion">
-      <button className="Avatar" onClick={handleClick}>
-        <Profile />
-      </button>
+    <div className='Accordion'>
+      <div>
+        <button className='Avatar' onClick={handleClick}>
+          <Profile />
+        </button>
+      </div>
       {show && <div>{children}</div>}
     </div>
   );
