@@ -1,16 +1,14 @@
-form.NewArticle {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+
+.center input,
+textarea {
+  width: 100%;
 }
 
-form.NewArticle > input,
-form.NewArticle > textarea {
-  margin-bottom: 1 rem;
-  padding: 0.4rem;
+.center input:last-child {
+  margin-bottom: 1rem;
 }
 
-form.NewArticle > button {
-  width: 50%;
-  margin: 1rem;
+.container {
+  background-color: none;
 }

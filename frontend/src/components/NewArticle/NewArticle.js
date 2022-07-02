@@ -62,39 +62,74 @@ const NewArticle = () => {
   });
 
   return (
-    <div>
-      <form className='NewArticle' onSubmit={handleSubmit}>
-        <label htmlFor='title'>Title:</label>
-        <input
-          type='text'
-          name='title'
-          value={title || ''}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+    <div className='center'>
+      <div className='container'>
+        <div className='row'>
+          <div
+            className='col-10 offset-1 col-sm-6 offset-sm-0 offset-sm-3
+               col-lg-4 offset-lg-0 offset-lg-4 col-xl-4 offset-xl-0 offset-xl-4
+                 border shadow p-3 mb-5 bg-body rounded'
+          >
+            <h1>New Article</h1>
+            <form onSubmit={handleSubmit}>
+              <div className='mb-3'>
+                <label htmlFor='title'>Title:</label>
+                <input
+                  type='text'
+                  name='title'
+                  value={title || ''}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </div>
+              <div className='mb-3'>
+                <label htmlFor='description'>Description:</label>
+                <textarea
+                  type='text'
+                  name='description'
+                  value={description || ''}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+              <div className='mb-3'>
+                <label htmlFor='url'>URL:</label>
+                <input
+                  type='text'
+                  name='url'
+                  value={url || ''}
+                  onChange={(e) => setUrl(e.target.value)}
+                />
+              </div>
 
-        <label htmlFor='description'>Description:</label>
-        <textarea
-          type='text'
-          name='description'
-          value={description || ''}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-
-        <label htmlFor='url'>URL:</label>
-        <input
-          type='text'
-          name='url'
-          value={url || ''}
-          onChange={(e) => setUrl(e.target.value)}
-        />
-
-        <button className='ButtonBack' onClick={() => setModal(null)}>
-          <Link to='/articles'>Back</Link>
-        </button>
-        <button disabled={loading}>Submit</button>
-      </form>
-      {error && <p className='Error'>{error}</p>}
-      {message && <p className='Success'>{message}</p>}
+              <div className='row'>
+                <div className='col-6'>
+                  <div className='mb-3'>
+                    {/*  <button
+                      onClick={handleBack}
+                      className='btn btn-danger col-12'
+                    >
+                      Back
+                    </button> */}
+                    <Link to='/articles'>Back</Link>
+                  </div>
+                </div>
+                <div className='col-6'>
+                  <div className='mb-3'>
+                    {/*  <button
+                      onClick={() => setModal(null)}
+                      className='btn btn-primary col-12'
+                    >
+                      Submit
+                    </button> */}
+                    <button disabled={loading}>Submit</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            {error && <p className='Error'>{error}</p>}
+            {message && <p className='Success'>{message}</p>}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

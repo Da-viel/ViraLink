@@ -7,7 +7,6 @@ import Header from './components/Header/Header';
 import Modal from './components/Modal/Modal';
 import { useModal } from './context/ModalContext';
 import './App.css';
-import { Prueba } from './components/Prueba/Prueba';
 
 function App() {
   const [modal] = useModal();
