@@ -94,7 +94,7 @@ export const Register = () => {
            col-lg-4 offset-lg-0 offset-lg-4 col-xl-4 offset-xl-0 offset-xl-4
              border shadow p-3 mb-5 bg-body rounded'
           >
-            <h1 className='text-primary'>Register</h1>
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
               <div className='mb-3'>
                 <label htmlFor='alias'>Alias</label>

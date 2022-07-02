@@ -3,7 +3,9 @@
   margin-top: 10%;
   font-size: 2vh;
 }
-
+.container h1 {
+  color: #00afef;
+}
 .error {
   text-align: center;
   color: rgb(201, 0, 0);
