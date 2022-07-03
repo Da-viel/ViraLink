@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useToken } from '../../context/TokenContext';
-import Navigation from '../Navigation/Navigation';
-import RatingArticles from '../RatingArticles/RatingArticles';
-import DeleteArticle from '../DeleteArticle/DeleteArticle';
-import { useNavigate, Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useToken } from "../../context/TokenContext";
+import Navigation from "../Navigation/Navigation";
+import RatingArticles from "../RatingArticles/RatingArticles";
+import DeleteArticle from "../DeleteArticle/DeleteArticle";
+import { useNavigate, Link } from "react-router-dom";
 
-import './Articles.css';
+import "./Articles.css";
 
 const Articles = () => {
   let navigate = useNavigate();
@@ -20,14 +20,14 @@ const Articles = () => {
     setError(null);
     try {
       const res = await fetch(`${process.env.REACT_APP_BACKEND}/article`, {
-        method: 'GET',
+        method: "GET",
         headers: {
           Authorization: token,
         },
       });
       const body = await res.json();
 
-      if (body.status === 'error') setError(body.message);
+      if (body.status === "error") setError(body.message);
       setarticles(body.data.articles);
     } catch (err) {
       setError(err.message);
@@ -43,66 +43,66 @@ const Articles = () => {
   }, [update]);
   return (
     <>
-      <main className='articleSearch'>
+      <main className="articleSearch">
         <Navigation />
-        {error && <p className='Error'>{error}</p>}
+        {error && <p className="Error">{error}</p>}
         {articles && (
-          <ul className='articleList'>
+          <ul className="articleList">
             {articles.map((article) => {
               const dateTime = new Date(article.createdAt).toLocaleString(
-                'es-ES'
+                "es-ES"
               );
               return (
                 <li key={article.id} data-id={article.id}>
-                  <div className='container border'>
-                    <div className='row border'>
-                      <div className='col-6 border'>
+                  <div className="container border">
+                    <div className="row border">
+                      <div className="col-6 border">
                         <Link
-                          className='tosinglepost'
+                          className="tosinglepost"
                           to={`/article/${article.id}`}
                         >
                           <h3>{article.Title}</h3>
                         </Link>
                       </div>
-                      <div className='col-6 border'>
+                      <div className="col-6 border">
                         {
                           <time dateTime={dateTime}>
                             {new Date(article.createdAt).toLocaleString(
-                              'es-ES'
+                              "es-ES"
                             )}
                           </time>
                         }
                       </div>
                     </div>
-                    <div className='row border'>
-                      <div className='col-3 border'>
+                    <div className="row border">
+                      <div className="col-3 border">
                         <img
-                          className='avatarimg'
+                          className="avatarimg"
                           src={`${process.env.REACT_APP_BACKEND}/${article.image}`}
                           alt={`Avatar de ${article.alias}`}
                         />
-                        <p className='username'>{article.alias}</p>
+                        <p className="username">{article.alias}</p>
                       </div>
-                      <div className='col-9 border'>
+                      <div className="col-9 border">
                         <p>{article.Description}</p>
                       </div>
                     </div>
-                    <div className='row border'>
-                      <div className='col-2 border'>
+                    <div className="row border">
+                      <div className="col-2 border">
                         <DeleteArticle idArticle={article.id} />
                       </div>
-                      <div className='col-8 border'>
-                        <a href={`https://${article.url}`} target='blank'>
+                      <div className="col-8 border">
+                        <a href={`https://${article.url}`} target="blank">
                           {article.url}
                         </a>
                       </div>
-                      <div className='col-2 border'>
+                      <div className="col-2 border">
                         {article.Rating_articles && (
-                          <div className='rating'>
+                          <div className="rating">
                             <p>Avg. rating: {article.Rating_articles}</p>
                           </div>
                         )}
-                        <RatingArticles />
+                        <RatingArticles idArticle={article.id} />
                       </div>
                     </div>
                   </div>
@@ -111,7 +111,6 @@ const Articles = () => {
             })}
           </ul>
         )}
-        <Navigation />
       </main>
     </>
   );

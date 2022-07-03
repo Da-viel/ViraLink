@@ -1,31 +1,35 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
+import { useModal } from "../../context/ModalContext";
 import Navigation from "../Navigation/Navigation";
-import DeleteArticle from "../DeleteArticle/DeleteArticle";
 import RatingArticles from "../RatingArticles/RatingArticles";
+import DeleteArticle from "../DeleteArticle/DeleteArticle";
 
-import "./SingleArticle.css";
+import "./ArticlesSearch.css";
 
-const SingleArticle = ({ idArticle }) => {
+import { useParams } from "react-router-dom";
+
+const ArticlesSearch = () => {
+  const params = useParams();
   const [token] = useToken();
+  const [, setModal] = useModal();
+  const [keyword, setKeyword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [articleById, setArticleById] = useState(null);
+  const [articles, setArticles] = useState(null);
   const [update, setUpdate] = useState(false);
   const [error, setError] = useState(null);
 
-  const getArticleById = async () => {
+  const getArticles = async () => {
     setLoading(true);
 
     // Vaciamos el error.
     setError(null);
 
-    // Si hay token nos interesa mandarlo para comprobar los articles de los que somos dueños.
-
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND}/article/${idArticle}/single`,
+        `${process.env.REACT_APP_BACKEND}/article/?keyword=${keyword}`,
         {
-          method: "GET",
           headers: {
             Authorization: token,
           },
@@ -34,9 +38,13 @@ const SingleArticle = ({ idArticle }) => {
 
       const body = await res.json();
 
-      if (body.status === "error") setError(body.message);
-
-      setArticleById(body.data.article);
+      if (body.status === "error") {
+        setArticles(null);
+        setError(body.message);
+        console.log(error);
+      } else {
+        setArticles(body.data.articles);
+      }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -44,22 +52,43 @@ const SingleArticle = ({ idArticle }) => {
     }
   };
 
-  // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
-  // cargue de forma automática la lista de articles.
+  /**
+   * #######################
+   * ## Get Articles Form ##
+   * #######################
+   */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    getArticles();
+  };
+
   useEffect(() => {
-    getArticleById();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [update]);
+    if (articles) {
+      setKeyword("");
+    }
+  });
+
+  console.log("Inside ArticlesSearch.js");
+  console.log(keyword);
+  console.log("**********");
 
   return (
     <>
-      <main className="ArticleById">
+      <main className="ArticlesSearch">
         <Navigation />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="keyword"
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+          <button disabled={loading}>Buscar</button>
+        </form>
         {error && <p className="Error">{error}</p>}
-
-        {articleById && (
+        {articles && (
           <ul className="articleList">
-            {articleById.map((article) => {
+            {articles.map((article) => {
               const dateTime = new Date(article.createdAt).toLocaleString(
                 "es-ES"
               );
@@ -68,7 +97,12 @@ const SingleArticle = ({ idArticle }) => {
                   <div className="container border">
                     <div className="row border">
                       <div className="col-6 border">
-                        <h3>{article.Title}</h3>
+                        <Link
+                          className="tosinglepost"
+                          to={`/article/${article.id}`}
+                        >
+                          <h3>{article.Title}</h3>
+                        </Link>
                       </div>
                       <div className="col-6 border">
                         {
@@ -122,4 +156,4 @@ const SingleArticle = ({ idArticle }) => {
   );
 };
 
-export default SingleArticle;
+export default ArticlesSearch;
