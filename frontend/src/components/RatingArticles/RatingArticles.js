@@ -27,12 +27,8 @@ const RatingArticles = ({ idArticle }) => {
             Authorization: token,
             "Content-Type": "application/json",
           },
-          //*******
-          //ERROR
-          //No está enviando correctamente el rating
-          //*******
 
-          body: JSON.stringify({ rating }),
+          body: JSON.stringify({ rating: parseInt(rating) }),
         }
       );
 
@@ -67,9 +63,8 @@ const RatingArticles = ({ idArticle }) => {
   return (
     <div className="RatingForm">
       <form onSubmit={handleSubmit}>
-        <h3>{rating}</h3>
         <select
-          value={rating}
+          value={parseInt(rating)}
           name="rating"
           id="rating"
           onChange={(e) => setRating(e.target.value)}
