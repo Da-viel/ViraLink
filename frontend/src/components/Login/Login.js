@@ -51,6 +51,13 @@ const Login = () => {
   };
   return (
     <div className='center'>
+      <div className='welcome'>
+        <h2>Welcome to ViraLink</h2>
+        <h4>
+          The best social media to <p>share your URL</p>
+        </h4>
+      </div>
+
       <div className='container'>
         <div className='row'>
           <div

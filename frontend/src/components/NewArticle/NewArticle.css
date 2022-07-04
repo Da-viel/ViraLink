@@ -1,14 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
-.center input,
+.container {
+  margin-top: 10%;
+  font-size: 2vh;
+  background-color: transparent;
+}
+.container h1 {
+  color: #00afef;
+}
+.error {
+  text-align: center;
+  color: rgb(201, 0, 0);
+  margin-top: 1rem;
+}
+
+.success {
+  text-align: center;
+  color: rgb(0, 201, 27);
+  margin-top: 1rem;
+}
+
+.container input,
 textarea {
   width: 100%;
 }
 
-.center input:last-child {
-  margin-bottom: 1rem;
-}
-
-.container {
-  background-color: none;
+@media screen and (min-device-width: 992px) {
+  .container {
+    margin-top: 5%;
+    padding: 0rem;
+  }
+  .container form,
+  .container h1 {
+    margin-top: 5%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .container input {
+    padding: 0.25rem;
+  }
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='file'],
+  textarea {
+    font-size: 12px;
+  }
 }

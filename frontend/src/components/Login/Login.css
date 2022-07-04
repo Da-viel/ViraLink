@@ -7,6 +7,13 @@ html {
   background-color: #f3f7ff;
 }
 
+.welcome {
+  padding-top: 3rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
 .loginLink {
   color: #f58634;
 }
@@ -25,10 +32,19 @@ html {
   color: rgb(201, 0, 0);
   margin-top: 1rem;
 }
-
+.welcome h2 {
+  color: #00afef;
+}
+.welcome h4 {
+  color: #f58634;
+}
+.welcome p {
+  display: inline-block;
+  color: #a8cf45;
+}
 @media screen and (min-device-width: 992px) {
   .container {
-    margin-top: 5%;
+    margin-top: 4%;
   }
   .container form,
   .container h1 {

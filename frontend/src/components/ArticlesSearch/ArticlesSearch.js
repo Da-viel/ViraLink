@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useToken } from "../../context/TokenContext";
-import { useModal } from "../../context/ModalContext";
-import Navigation from "../Navigation/Navigation";
-import RatingArticles from "../RatingArticles/RatingArticles";
-import DeleteArticle from "../DeleteArticle/DeleteArticle";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useToken } from '../../context/TokenContext';
+import { useModal } from '../../context/ModalContext';
+import Navigation from '../Navigation/Navigation';
+import RatingArticles from '../RatingArticles/RatingArticles';
+import DeleteArticle from '../DeleteArticle/DeleteArticle';
 
-import "./ArticlesSearch.css";
+import './ArticlesSearch.css';
 
 const ArticlesSearch = () => {
   let navigate = useNavigate();
   const [token] = useToken();
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState('');
   const [, setModal] = useModal();
   const [loading, setLoading] = useState(false);
   const [articles, setArticles] = useState(null);
@@ -28,7 +28,7 @@ const ArticlesSearch = () => {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND}/article/${keyword}`,
         {
-          method: "GET",
+          method: 'GET',
           headers: {
             Authorization: token,
           },
@@ -37,10 +37,9 @@ const ArticlesSearch = () => {
 
       const body = await res.json();
 
-      if (body.status === "error") {
+      if (body.status === 'error') {
         setArticles(null);
         setError(body.message);
-        console.log(error);
       } else {
         setArticles(body.data.articles);
       }
@@ -71,71 +70,71 @@ const ArticlesSearch = () => {
 
   return (
     <>
-      <main className="ArticlesSearch">
+      <main className='ArticlesSearch'>
         <Navigation />
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
-            name="keyword"
+            type='text'
+            name='keyword'
             onChange={(e) => setKeyword(e.target.value)}
           />
           <button disabled={loading}>Search</button>
         </form>
-        {error && <p className="Error">{error}</p>}
+        {error && <p className='Error'>{error}</p>}
         {articles && (
-          <ul className="articleList">
+          <ul className='articleList'>
             {articles.map((article) => {
               const dateTime = new Date(article.createdAt).toLocaleString(
-                "es-ES"
+                'es-ES'
               );
               return (
                 <li key={article.id} data-id={article.id}>
-                  <div className="container border">
-                    <div className="row border">
-                      <div className="col-6 border">
+                  <div className='container border'>
+                    <div className='row border'>
+                      <div className='col-6 border'>
                         <Link
-                          className="tosinglepost"
+                          className='tosinglepost'
                           onClick={() => setModal(null)}
                           to={`/article/${article.id}`}
                         >
                           <h3>{article.Title}</h3>
                         </Link>
                       </div>
-                      <div className="col-6 border">
+                      <div className='col-6 border'>
                         {
                           <time dateTime={dateTime}>
                             {new Date(article.createdAt).toLocaleString(
-                              "es-ES"
+                              'es-ES'
                             )}
                           </time>
                         }
                       </div>
                     </div>
-                    <div className="row border">
-                      <div className="col-3 border">
+                    <div className='row border'>
+                      <div className='col-3 border'>
                         <img
-                          className="avatarimg"
+                          className='avatarimg'
                           src={`${process.env.REACT_APP_BACKEND}/${article.image}`}
                           alt={`Avatar de ${article.alias}`}
                         />
-                        <p className="username">{article.alias}</p>
+                        <p className='username'>{article.alias}</p>
                       </div>
-                      <div className="col-9 border">
+                      <div className='col-9 border'>
                         <p>{article.Description}</p>
                       </div>
                     </div>
-                    <div className="row border">
-                      <div className="col-2 border">
+                    <div className='row border'>
+                      <div className='col-2 border'>
                         <DeleteArticle idArticle={article.id} />
                       </div>
-                      <div className="col-8 border">
-                        <a href={`https://${article.url}`} target="blank">
+                      <div className='col-8 border'>
+                        <a href={`https://${article.url}`} target='blank'>
                           {article.url}
                         </a>
                       </div>
-                      <div className="col-2 border">
+                      <div className='col-2 border'>
                         {article.Rating_articles && (
-                          <div className="rating">
+                          <div className='rating'>
                             <p>Avg. rating: {article.Rating_articles}</p>
                           </div>
                         )}

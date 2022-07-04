@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useToken } from "../../context/TokenContext";
-import { useModal } from "../../context/ModalContext";
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useToken } from '../../context/TokenContext';
+import { useModal } from '../../context/ModalContext';
 
-import "./NewArticle.css";
+import './NewArticle.css';
 
 const NewArticle = () => {
   let navigate = useNavigate();
   const [token] = useToken();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [url, setUrl] = useState('');
   const [, setModal] = useModal();
 
   const [loading, setLoading] = useState(false);
@@ -25,17 +25,17 @@ const NewArticle = () => {
 
     try {
       const res = await fetch(`${process.env.REACT_APP_BACKEND}/article`, {
-        method: "POST",
+        method: 'POST',
         headers: {
           Authorization: token,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ title, description, url }),
       });
 
       const body = await res.json();
 
-      if (body.status === "error") {
+      if (body.status === 'error') {
         setError(body.message);
       } else {
         setMessage(body.message);
@@ -47,14 +47,17 @@ const NewArticle = () => {
       setLoading(false);
     }
   };
-
+  const handleBack = (e) => {
+    e.preventDefault();
+    setModal(null);
+  };
   useEffect(() => {
-    const successP = document.querySelector("p.Success");
+    const successP = document.querySelector('p.Success');
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector("p.Success").remove();
-        return navigate("/articles");
+        document.querySelector('p.Success').remove();
+        return navigate('/articles');
       }, 3000);
 
       return () => clearTimeout(t);
@@ -62,77 +65,70 @@ const NewArticle = () => {
   });
 
   return (
-    <div className="center">
-      <div className="container">
-        <div className="row">
-          <div
-            className="col-10 offset-1 col-sm-6 offset-sm-0 offset-sm-3
-               col-lg-4 offset-lg-0 offset-lg-4 col-xl-4 offset-xl-0 offset-xl-4
-                 border shadow p-3 mb-5 bg-body rounded"
-          >
-            <h1>New Article</h1>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label htmlFor="title">Title:</label>
-                <input
-                  type="text"
-                  name="title"
-                  value={title || ""}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="description">Description:</label>
-                <textarea
-                  type="text"
-                  name="description"
-                  value={description || ""}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="url">URL:</label>
-                <input
-                  type="text"
-                  name="url"
-                  value={url || ""}
-                  onChange={(e) => setUrl(e.target.value)}
-                />
-              </div>
-
-              <div className="row">
-                <div className="col-6">
-                  <div className="mb-3">
-                    {/*
-                      <button/>
-                        onClick={handleBack}
-                        className="btn btn-danger col-12"
-                      >
-                        Back
-                      </button>
-  */}
-                    <Link to="/articles">Back</Link>
-                  </div>
-                </div>
-                <div className="col-6">
-                  <div className="mb-3">
-                    {
-                      <button
-                        onClick={() => setModal(null)}
-                        className="btn btn-primary col-12"
-                      >
-                        Submit
-                      </button>
-                    }
-                    <button disabled={loading}>Submit</button>
-                  </div>
-                </div>
-              </div>
-            </form>
-            {error && <p className="Error">{error}</p>}
-            {message && <p className="Success">{message}</p>}
+    <div className='container'>
+      <div
+        className='
+                 border shadow p-3 mb-5 bg-body rounded'
+      >
+        <h1>New Article</h1>
+        <form onSubmit={handleSubmit}>
+          <div className='mb-3'>
+            <label htmlFor='title'>Title:</label>
+            <input
+              type='text'
+              name='title'
+              value={title || ''}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
-        </div>
+          <div className='mb-3'>
+            <label htmlFor='description'>Description:</label>
+            <textarea
+              type='text'
+              name='description'
+              value={description || ''}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className='mb-3'>
+            <label htmlFor='url'>URL:</label>
+            <input
+              type='text'
+              name='url'
+              value={url || ''}
+              onChange={(e) => setUrl(e.target.value)}
+            />
+          </div>
+
+          <div className='row'>
+            <div className='col-6'>
+              <div className='mb-3'>
+                {
+                  <button
+                    onClick={handleBack}
+                    className='btn btn-danger col-12'
+                  >
+                    Back
+                  </button>
+                }
+              </div>
+            </div>
+            <div className='col-6'>
+              <div className='mb-3'>
+                {
+                  <button
+                    onClick={() => setModal(null)}
+                    className='btn btn-primary col-12'
+                  >
+                    Submit
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+        </form>
+        {error && <p className='error'>{error}</p>}
+        {message && <p className='success'>{message}</p>}
       </div>
     </div>
   );
