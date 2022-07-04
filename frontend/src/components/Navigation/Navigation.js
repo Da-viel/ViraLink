@@ -8,6 +8,7 @@ const Navigation = () => {
   let navigate = useNavigate();
   const [, setModal] = useModal();
   const handleHome = () => {
+    setModal(null);
     return navigate("/articles");
   };
   return (

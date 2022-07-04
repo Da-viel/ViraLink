@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
 import { useModal } from "../../context/ModalContext";
 import Navigation from "../Navigation/Navigation";
@@ -8,19 +8,17 @@ import DeleteArticle from "../DeleteArticle/DeleteArticle";
 
 import "./ArticlesSearch.css";
 
-import { useParams } from "react-router-dom";
-
 const ArticlesSearch = () => {
-  const params = useParams();
+  let navigate = useNavigate();
   const [token] = useToken();
-  const [, setModal] = useModal();
   const [keyword, setKeyword] = useState("");
+  const [, setModal] = useModal();
   const [loading, setLoading] = useState(false);
   const [articles, setArticles] = useState(null);
   const [update, setUpdate] = useState(false);
   const [error, setError] = useState(null);
 
-  const getArticles = async () => {
+  const getArticlesByKeyword = async () => {
     setLoading(true);
 
     // Vaciamos el error.
@@ -28,8 +26,9 @@ const ArticlesSearch = () => {
 
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND}/article/?keyword=${keyword}`,
+        `${process.env.REACT_APP_BACKEND}/article/${keyword}`,
         {
+          method: "GET",
           headers: {
             Authorization: token,
           },
@@ -60,18 +59,15 @@ const ArticlesSearch = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    getArticles();
+    getArticlesByKeyword();
   };
 
-  useEffect(() => {
-    if (articles) {
-      setKeyword("");
-    }
-  });
-
-  console.log("Inside ArticlesSearch.js");
-  console.log(keyword);
-  console.log("**********");
+  // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
+  // cargue de forma automática la lista de articles.
+  /* useEffect(() => {
+    getArticlesByKeyword();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [update]);*/
 
   return (
     <>
@@ -83,7 +79,7 @@ const ArticlesSearch = () => {
             name="keyword"
             onChange={(e) => setKeyword(e.target.value)}
           />
-          <button disabled={loading}>Buscar</button>
+          <button disabled={loading}>Search</button>
         </form>
         {error && <p className="Error">{error}</p>}
         {articles && (
@@ -99,6 +95,7 @@ const ArticlesSearch = () => {
                       <div className="col-6 border">
                         <Link
                           className="tosinglepost"
+                          onClick={() => setModal(null)}
                           to={`/article/${article.id}`}
                         >
                           <h3>{article.Title}</h3>

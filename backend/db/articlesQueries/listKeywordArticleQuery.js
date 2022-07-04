@@ -12,10 +12,11 @@ const listKeywordArticleQuery = async (keyword) => {
 
         [article] = await connection.query(
             `
-            SELECT url,Title,Description, ROUND(AVG(rating),2) AS "Rating_articles"
+            SELECT  articles.id,url,Title,Description,articles.createdAt, ROUND(AVG(rating),1) AS "Rating_articles", users.alias, users.image
             FROM articles
             LEFT JOIN ratings
             ON articles.id = ratings.idArticle
+            JOIN users ON  articles.idUser = users.id
             WHERE 
             articles.description like ?
             OR articles.title like ?
