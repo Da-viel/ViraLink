@@ -17,7 +17,7 @@ const Header = () => {
         <div className='avatarHeader'>
           <Accordion>
             <button
-              className='btn btn-primary'
+              className='btn btn-primary m-1'
               onClick={() => {
                 localStorage.removeItem('token');
                 setToken(null);
@@ -27,7 +27,7 @@ const Header = () => {
               Log Out
             </button>
             <button
-              className='btn btn-primary'
+              className='btn btn-primary m-1'
               onClick={() => setModal(<EditUser />)}
             >
               Edit Profile

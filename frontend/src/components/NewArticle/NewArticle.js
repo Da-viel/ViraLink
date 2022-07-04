@@ -52,12 +52,12 @@ const NewArticle = () => {
     setModal(null);
   };
   useEffect(() => {
-    const successP = document.querySelector('p.Success');
+    const successP = document.querySelector('p.success');
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector('p.Success').remove();
-        return navigate('/articles');
+        document.querySelector('p.success').remove();
+        return setModal(null);
       }, 3000);
 
       return () => clearTimeout(t);
@@ -77,6 +77,7 @@ const NewArticle = () => {
             <input
               type='text'
               name='title'
+              className='form-control'
               value={title || ''}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -86,6 +87,7 @@ const NewArticle = () => {
             <textarea
               type='text'
               name='description'
+              className='form-control'
               value={description || ''}
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -96,6 +98,7 @@ const NewArticle = () => {
               type='text'
               name='url'
               value={url || ''}
+              className='form-control'
               onChange={(e) => setUrl(e.target.value)}
             />
           </div>
@@ -117,7 +120,7 @@ const NewArticle = () => {
               <div className='mb-3'>
                 {
                   <button
-                    onClick={() => setModal(null)}
+                    onClick={handleSubmit}
                     className='btn btn-primary col-12'
                   >
                     Submit

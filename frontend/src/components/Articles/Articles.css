@@ -23,3 +23,9 @@ ul {
   box-sizing: border-box;
   list-style: none;
 }
+
+@media screen and (min-device-width: 992px) {
+  .articleSearch li {
+    margin-left: 5vh;
+  }
+}

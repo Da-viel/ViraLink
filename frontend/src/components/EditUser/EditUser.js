@@ -215,7 +215,7 @@ const EditUser = () => {
                       className='btn btn-primary col-12'
                       disabled={loading}
                     >
-                      Sign Up
+                      Submit
                     </button>
                   </div>
                 </div>

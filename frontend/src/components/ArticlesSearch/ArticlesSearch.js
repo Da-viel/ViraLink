@@ -71,15 +71,26 @@ const ArticlesSearch = () => {
   return (
     <>
       <main className='ArticlesSearch'>
-        <Navigation />
-        <form onSubmit={handleSubmit}>
-          <input
-            type='text'
-            name='keyword'
-            onChange={(e) => setKeyword(e.target.value)}
-          />
-          <button disabled={loading}>Search</button>
-        </form>
+        <div className='container'>
+          <div
+            className='
+                 border shadow p-3 mb-5 bg-body rounded'
+          >
+            <form onSubmit={handleSubmit}>
+              <h1>Search</h1>
+              <input
+                className='col-12 form-control p-2'
+                type='text'
+                name='keyword'
+                placeholder='Search...'
+                onChange={(e) => setKeyword(e.target.value)}
+              />
+              <button className='btn btn-primary mt-2' disabled={loading}>
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
         {error && <p className='Error'>{error}</p>}
         {articles && (
           <ul className='articleList'>
