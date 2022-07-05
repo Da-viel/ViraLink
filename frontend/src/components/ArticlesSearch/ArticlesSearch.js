@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import RatingArticles from "../RatingArticles/RatingArticles";
 import DeleteArticle from "../DeleteArticle/DeleteArticle";
@@ -6,9 +5,6 @@ import DeleteArticle from "../DeleteArticle/DeleteArticle";
 import "./ArticlesSearch.css";
 
 const ArticlesSearch = ({ articles }) => {
-  console.log("Inside ArticlesSearch");
-  console.log(articles);
-
   // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
   // cargue de forma automática la lista de articles.
   /* useEffect(() => {
@@ -75,6 +71,7 @@ const ArticlesSearch = ({ articles }) => {
                             <p>Avg. rating: {article.Rating_articles}</p>
                           </div>
                         )}
+                        <RatingArticles idArticle={article.id} />
                       </div>
                     </div>
                   </div>

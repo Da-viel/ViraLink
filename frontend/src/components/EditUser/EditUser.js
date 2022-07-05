@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useToken } from '../../context/TokenContext';
-import { useModal } from '../../context/ModalContext';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToken } from "../../context/TokenContext";
+import { useModal } from "../../context/ModalContext";
 
-import './EditUser.css';
+import "./EditUser.css";
 
 const EditUser = () => {
   let navigate = useNavigate();
   const [, setModal] = useModal();
   const [token] = useToken();
-  const [alias, setAlias] = useState('');
-  const [name, setName] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rPass, setRpass] = useState('');
-  const [biography, setBiography] = useState('');
+  const [alias, setAlias] = useState("");
+  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rPass, setRpass] = useState("");
+  const [biography, setBiography] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
   const [loading, setLoading] = useState(false);
@@ -39,17 +39,17 @@ const EditUser = () => {
         return setError("Passwords don't match");
       }
       // Pusheamos las propiedades con append.
-      formData.append('alias', alias);
-      formData.append('name', name);
-      formData.append('firstName', firstName);
-      formData.append('lastName', lastName);
-      formData.append('email', email);
-      formData.append('password', password);
-      formData.append('biography', biography);
-      formData.append('image', selectedFile);
+      formData.append("alias", alias);
+      formData.append("name", name);
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("biography", biography);
+      formData.append("image", selectedFile);
 
       const res = await fetch(`${process.env.REACT_APP_BACKEND}/users`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
           Authorization: token,
         },
@@ -58,7 +58,7 @@ const EditUser = () => {
 
       const body = await res.json();
 
-      if (body.status === 'error') {
+      if (body.status === "error") {
         setError(body.message);
       } else {
         setMessage(body.message);
@@ -72,12 +72,12 @@ const EditUser = () => {
   };
 
   useEffect(() => {
-    const successP = document.querySelector('p.Success');
+    const successP = document.querySelector("p.Success");
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector('p.Success').remove();
-        return navigate('/articles');
+        document.querySelector("p.Success").remove();
+        return navigate("/articles");
       }, 3000);
 
       return () => clearTimeout(t);
@@ -85,134 +85,134 @@ const EditUser = () => {
   });
 
   return (
-    <div className='center'>
-      <div className='container'>
-        <div className='row'>
+    <div className="center">
+      <div className="container">
+        <div className="row">
           <div
-            className='
-             border shadow p-3 mb-5 bg-body rounded'
+            className="
+             border shadow p-3 mb-5 bg-body rounded"
           >
             <h1>Edit User</h1>
             <form onSubmit={handleSubmit}>
-              <div className='mb-3'>
-                <label htmlFor='alias'>Alias</label>
+              <div className="mb-3">
+                <label htmlFor="alias">Alias</label>
                 <input
-                  type='text'
-                  name='alias'
-                  className='form-control'
+                  type="text"
+                  name="alias"
+                  className="form-control"
                   value={alias || null}
-                  placeholder='Enter your alias'
+                  placeholder="Enter your alias"
                   onChange={(e) => setAlias(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='name'>Name</label>
+              <div className="mb-3">
+                <label htmlFor="name">Name</label>
                 <input
-                  type='text'
-                  name='name'
-                  className='form-control'
+                  type="text"
+                  name="name"
+                  className="form-control"
                   value={name || null}
-                  placeholder='Enter your name'
+                  placeholder="Enter your name"
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='firstName'>First name</label>
+              <div className="mb-3">
+                <label htmlFor="firstName">First name</label>
                 <input
-                  type='text'
-                  name='firstName'
-                  className='form-control'
+                  type="text"
+                  name="firstName"
+                  className="form-control"
                   value={firstName || null}
-                  placeholder='Enter your first name'
+                  placeholder="Enter your first name"
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='lastName'>Last name</label>
+              <div className="mb-3">
+                <label htmlFor="lastName">Last name</label>
                 <input
-                  type='text'
-                  name='lastName'
-                  className='form-control'
+                  type="text"
+                  name="lastName"
+                  className="form-control"
                   value={lastName || null}
-                  placeholder='Enter your last name'
+                  placeholder="Enter your last name"
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='email' className='form-label'>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
                   Email
                 </label>
                 <input
-                  type='email'
-                  name='email'
-                  className='form-control'
+                  type="email"
+                  name="email"
+                  className="form-control"
                   value={email || null}
-                  placeholder='Enter your email'
+                  placeholder="Enter your email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='password' className='form-label'>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
                   Password
                 </label>
                 <input
-                  type='password'
-                  name='pass'
-                  className='form-control'
+                  type="password"
+                  name="pass"
+                  className="form-control"
                   value={password || null}
-                  placeholder='Enter your password'
+                  placeholder="Enter your password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='rPass' className='form-label'>
+              <div className="mb-3">
+                <label htmlFor="rPass" className="form-label">
                   Repeat Password
                 </label>
                 <input
-                  type='password'
-                  name='rPass'
-                  className='form-control'
+                  type="password"
+                  name="rPass"
+                  className="form-control"
                   value={rPass || null}
-                  placeholder='Re-enter your password'
+                  placeholder="Re-enter your password"
                   onChange={(e) => setRpass(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='biography'>Biography</label>
+              <div className="mb-3">
+                <label htmlFor="biography">Biography</label>
                 <textarea
-                  rows='4'
-                  cols='50'
-                  maxLength='210'
-                  type='text'
-                  name='biography'
-                  className='form-control'
+                  rows="4"
+                  cols="50"
+                  maxLength="210"
+                  type="text"
+                  name="biography"
+                  className="form-control"
                   value={biography || null}
                   onChange={(e) => setBiography(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
+              <div className="mb-3">
                 <input
-                  type='file'
+                  type="file"
                   onChange={(e) => {
                     setSelectedFile(e.target.files[0]);
                   }}
                 />
               </div>
-              <div className='row'>
-                <div className='col-6'>
-                  <div className='mb-3'>
+              <div className="row">
+                <div className="col-6">
+                  <div className="mb-3">
                     <button
                       onClick={() => setModal(null)}
-                      className='btn btn-danger col-12'
+                      className="btn btn-danger col-12"
                     >
                       Back
                     </button>
                   </div>
                 </div>
-                <div className='col-6'>
-                  <div className='mb-3'>
+                <div className="col-6">
+                  <div className="mb-3">
                     <button
-                      className='btn btn-primary col-12'
+                      className="btn btn-primary col-12"
                       disabled={loading}
                     >
                       Submit
@@ -221,8 +221,8 @@ const EditUser = () => {
                 </div>
               </div>
             </form>
-            {error && <p className='error'>{error}</p>}
-            {message && <p className='success'>{message}</p>}
+            {error && <p className="error">{error}</p>}
+            {message && <p className="success">{message}</p>}
           </div>
         </div>
       </div>

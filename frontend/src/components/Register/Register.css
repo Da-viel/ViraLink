@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap");
 .container {
   margin-top: 10%;
   font-size: 2vh;
@@ -33,10 +33,10 @@
   .container input {
     padding: 0.25rem;
   }
-  input[type='text'],
-  input[type='email'],
-  input[type='password'],
-  input[type='file'],
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="file"],
   textarea {
     font-size: 12px;
   }
