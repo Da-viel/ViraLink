@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToken } from '../../context/TokenContext';
 import { useModal } from '../../context/ModalContext';
-
+import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 import './EditUser.css';
 
 const EditUser = () => {
@@ -17,7 +17,7 @@ const EditUser = () => {
   const [password, setPassword] = useState('');
   const [rPass, setRpass] = useState('');
   const [biography, setBiography] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
@@ -100,7 +100,7 @@ const EditUser = () => {
                   type='text'
                   name='alias'
                   className='form-control'
-                  value={alias || null}
+                  value={alias || ''}
                   placeholder='Enter your alias'
                   onChange={(e) => setAlias(e.target.value)}
                 />
@@ -111,7 +111,7 @@ const EditUser = () => {
                   type='text'
                   name='name'
                   className='form-control'
-                  value={name || null}
+                  value={name || ''}
                   placeholder='Enter your name'
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -122,7 +122,7 @@ const EditUser = () => {
                   type='text'
                   name='firstName'
                   className='form-control'
-                  value={firstName || null}
+                  value={firstName || ''}
                   placeholder='Enter your first name'
                   onChange={(e) => setFirstName(e.target.value)}
                 />
@@ -133,7 +133,7 @@ const EditUser = () => {
                   type='text'
                   name='lastName'
                   className='form-control'
-                  value={lastName || null}
+                  value={lastName || ''}
                   placeholder='Enter your last name'
                   onChange={(e) => setLastName(e.target.value)}
                 />
@@ -146,7 +146,7 @@ const EditUser = () => {
                   type='email'
                   name='email'
                   className='form-control'
-                  value={email || null}
+                  value={email || ''}
                   placeholder='Enter your email'
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -159,7 +159,7 @@ const EditUser = () => {
                   type='password'
                   name='pass'
                   className='form-control'
-                  value={password || null}
+                  value={password || ''}
                   placeholder='Enter your password'
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -172,7 +172,7 @@ const EditUser = () => {
                   type='password'
                   name='rPass'
                   className='form-control'
-                  value={rPass || null}
+                  value={rPass || ''}
                   placeholder='Re-enter your password'
                   onChange={(e) => setRpass(e.target.value)}
                 />
@@ -186,7 +186,7 @@ const EditUser = () => {
                   type='text'
                   name='biography'
                   className='form-control'
-                  value={biography || null}
+                  value={biography || ''}
                   onChange={(e) => setBiography(e.target.value)}
                 />
               </div>
@@ -221,8 +221,7 @@ const EditUser = () => {
                 </div>
               </div>
             </form>
-            {error && <p className='error'>{error}</p>}
-            {message && <p className='success'>{message}</p>}
+            <ErrorOrSucces error={error} message={message} />
           </div>
         </div>
       </div>

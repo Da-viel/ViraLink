@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useToken } from '../../context/TokenContext';
-import Navigation from '../Navigation/Navigation';
 import RatingArticles from '../RatingArticles/RatingArticles';
-import DeleteArticle from '../DeleteArticle/DeleteArticle';
 import { useNavigate, Link } from 'react-router-dom';
+import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 
 import './Articles.css';
 
@@ -43,7 +42,7 @@ const Articles = () => {
   return (
     <>
       <main className='articleSearch'>
-        {error && <p className='Error'>{error}</p>}
+        <ErrorOrSucces error={error} />
         {articles && (
           <ul className='articleList'>
             {articles.map((article) => {
@@ -86,17 +85,12 @@ const Articles = () => {
                       </div>
                     </div>
                     <div className='row border'>
-                      {/*    {article.alias===  ?
-                        <div className='col-2 border'>
-                          <DeleteArticle idArticle={article.id} />
-                        </div>:null
-                      } */}
-                      <div className='col-8 border'>
+                      <div className='col-8 border ' align='center'>
                         <a href={`${article.url}`} target='blank'>
                           {article.url}
                         </a>
                       </div>
-                      <div className='col-2 border'>
+                      <div className='col-4 border'>
                         {article.Rating_articles && (
                           <div className='rating'>
                             <p>Avg. rating: {article.Rating_articles}</p>

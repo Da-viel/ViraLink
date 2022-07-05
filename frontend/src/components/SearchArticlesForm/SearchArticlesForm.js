@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useToken } from '../../context/TokenContext';
-
+import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 const SearchArticlesForm = ({ setSearchResults }) => {
   const [token] = useToken();
   const [keyword, setKeyword] = useState('');
@@ -26,8 +26,6 @@ const SearchArticlesForm = ({ setSearchResults }) => {
       );
 
       const body = await res.json();
-
-      console.log(body);
 
       if (body.status === 'error') {
         setError(body.message);
@@ -80,7 +78,7 @@ const SearchArticlesForm = ({ setSearchResults }) => {
           </form>
         </div>
       </div>
-      {error && <p className='Error'>{error}</p>}
+      <ErrorOrSucces error={error} />
     </>
   );
 };

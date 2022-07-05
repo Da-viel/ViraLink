@@ -2,7 +2,7 @@ import './Register.css';
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useToken } from '../../context/TokenContext';
-
+import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 export const Register = () => {
   let navigate = useNavigate();
   const [token] = useToken();
@@ -223,8 +223,7 @@ export const Register = () => {
                 </div>
               </div>
             </form>
-            {error && <p className='error'>{error}</p>}
-            {message && <p className='success'>{message}</p>}
+            <ErrorOrSucces error={error} message={message} />
           </div>
         </div>
       </div>
