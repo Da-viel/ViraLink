@@ -6,13 +6,6 @@
   background-color: #00afef;
 }
 
-.navigationHome button::after {
-  color: black;
-
-  margin-left: 3rem;
-  padding-bottom: 1rem;
-}
-
 @media screen and (min-device-width: 992px) {
   div.container-fluid {
     margin-left: 30px;

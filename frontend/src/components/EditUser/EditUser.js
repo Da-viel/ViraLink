@@ -100,7 +100,7 @@ const EditUser = () => {
                   type='text'
                   name='alias'
                   className='form-control'
-                  value={alias || ''}
+                  value={alias || null}
                   placeholder='Enter your alias'
                   onChange={(e) => setAlias(e.target.value)}
                 />
@@ -111,7 +111,7 @@ const EditUser = () => {
                   type='text'
                   name='name'
                   className='form-control'
-                  value={name || ''}
+                  value={name || null}
                   placeholder='Enter your name'
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -122,7 +122,7 @@ const EditUser = () => {
                   type='text'
                   name='firstName'
                   className='form-control'
-                  value={firstName || ''}
+                  value={firstName || null}
                   placeholder='Enter your first name'
                   onChange={(e) => setFirstName(e.target.value)}
                 />
@@ -133,7 +133,7 @@ const EditUser = () => {
                   type='text'
                   name='lastName'
                   className='form-control'
-                  value={lastName || ''}
+                  value={lastName || null}
                   placeholder='Enter your last name'
                   onChange={(e) => setLastName(e.target.value)}
                 />
@@ -146,7 +146,7 @@ const EditUser = () => {
                   type='email'
                   name='email'
                   className='form-control'
-                  value={email || ''}
+                  value={email || null}
                   placeholder='Enter your email'
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -159,7 +159,7 @@ const EditUser = () => {
                   type='password'
                   name='pass'
                   className='form-control'
-                  value={password || ''}
+                  value={password || null}
                   placeholder='Enter your password'
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -172,7 +172,7 @@ const EditUser = () => {
                   type='password'
                   name='rPass'
                   className='form-control'
-                  value={rPass || ''}
+                  value={rPass || null}
                   placeholder='Re-enter your password'
                   onChange={(e) => setRpass(e.target.value)}
                 />
@@ -186,7 +186,7 @@ const EditUser = () => {
                   type='text'
                   name='biography'
                   className='form-control'
-                  value={biography || ''}
+                  value={biography || null}
                   onChange={(e) => setBiography(e.target.value)}
                 />
               </div>
