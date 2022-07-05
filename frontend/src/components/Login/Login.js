@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useToken } from '../../context/TokenContext';
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useToken } from "../../context/TokenContext";
 
-import './Login.css';
+import "./Login.css";
 
 const Login = () => {
   const [token, setToken] = useToken();
   let navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,9 +23,9 @@ const Login = () => {
 
     try {
       const res = await fetch(`${process.env.REACT_APP_BACKEND}/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
 
         body: JSON.stringify({
@@ -36,11 +36,11 @@ const Login = () => {
 
       const body = await res.json();
 
-      if (body.status === 'error') {
+      if (body.status === "error") {
         setError(body.message);
       } else {
         setToken(body.data.token);
-        return navigate('/articles');
+        return navigate("/articles");
       }
     } catch (err) {
       console.error(err);
@@ -50,68 +50,68 @@ const Login = () => {
     }
   };
   return (
-    <div className='center'>
-      <div className='welcome'>
+    <div className="center">
+      <div className="welcome">
         <h2>Welcome to ViraLink</h2>
         <h4>
-          The best social media to <p>share your URL</p>
+          The best social media application to <p>share your URLs</p>
         </h4>
       </div>
 
-      <div className='container'>
-        <div className='row'>
+      <div className="container">
+        <div className="row">
           <div
-            className='col-10 offset-1 col-sm-6 offset-sm-0 offset-sm-3
+            className="col-10 offset-1 col-sm-6 offset-sm-0 offset-sm-3
            col-lg-4 offset-lg-0 offset-lg-4 col-xl-4 offset-xl-0 offset-xl-4
-             border shadow p-3 mb-5 bg-body rounded'
+             border shadow p-3 mb-5 bg-body rounded"
           >
             <h1>Log In</h1>
             <form>
-              <div className='mb-3'>
-                <label htmlFor='email' className='form-label'>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
                   Email
                 </label>
                 <input
-                  type='email'
-                  name='email'
-                  className='form-control'
-                  placeholder='Enter your email'
-                  value={email || ''}
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  placeholder="Enter your email"
+                  value={email || ""}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='password' className='form-label'>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
                   Password
                 </label>
                 <input
-                  type='password'
-                  name='pass'
-                  className='form-control'
-                  value={password || ''}
-                  placeholder='Enter your password'
+                  type="password"
+                  name="pass"
+                  className="form-control"
+                  value={password || ""}
+                  placeholder="Enter your password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div className='mb-3'>
+              <div className="mb-3">
                 <p>
                   Not registered yet? -
-                  <NavLink to='/users' className='loginLink'>
+                  <NavLink to="/users" className="loginLink">
                     click here
                   </NavLink>
                 </p>
               </div>
 
-              <div disabled={loading} className='d-grid gap-2 col-6 mx-auto'>
+              <div disabled={loading} className="d-grid gap-2 col-6 mx-auto">
                 <button
-                  type='submit'
+                  type="submit"
                   onClick={handleSubmit}
-                  className='btn btn-primary'
+                  className="btn btn-primary"
                 >
                   Log In
                 </button>
               </div>
-              {error ? <p className='error'>{error}</p> : null}
+              {error ? <p className="error">{error}</p> : null}
             </form>
           </div>
         </div>

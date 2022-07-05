@@ -1,65 +1,13 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useToken } from '../../context/TokenContext';
-import { useModal } from '../../context/ModalContext';
-import Navigation from '../Navigation/Navigation';
-import RatingArticles from '../RatingArticles/RatingArticles';
-import DeleteArticle from '../DeleteArticle/DeleteArticle';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import RatingArticles from "../RatingArticles/RatingArticles";
+import DeleteArticle from "../DeleteArticle/DeleteArticle";
 
-import './ArticlesSearch.css';
+import "./ArticlesSearch.css";
 
-const ArticlesSearch = () => {
-  let navigate = useNavigate();
-  const [token] = useToken();
-  const [keyword, setKeyword] = useState('');
-  const [, setModal] = useModal();
-  const [loading, setLoading] = useState(false);
-  const [articles, setArticles] = useState(null);
-  const [update, setUpdate] = useState(false);
-  const [error, setError] = useState(null);
-
-  const getArticlesByKeyword = async () => {
-    setLoading(true);
-
-    // Vaciamos el error.
-    setError(null);
-
-    try {
-      const res = await fetch(
-        `${process.env.REACT_APP_BACKEND}/article/${keyword}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-
-      const body = await res.json();
-
-      if (body.status === 'error') {
-        setArticles(null);
-        setError(body.message);
-      } else {
-        setArticles(body.data.articles);
-      }
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  /**
-   * #######################
-   * ## Get Articles Form ##
-   * #######################
-   */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    getArticlesByKeyword();
-  };
+const ArticlesSearch = ({ articles }) => {
+  console.log("Inside ArticlesSearch");
+  console.log(articles);
 
   // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
   // cargue de forma automática la lista de articles.
@@ -70,86 +18,63 @@ const ArticlesSearch = () => {
 
   return (
     <>
-      <main className='ArticlesSearch'>
-        <div className='container'>
-          <div
-            className='
-                 border shadow p-3 mb-5 bg-body rounded'
-          >
-            <form onSubmit={handleSubmit}>
-              <h1>Search</h1>
-              <input
-                className='col-12 form-control p-2'
-                type='text'
-                name='keyword'
-                placeholder='Search...'
-                onChange={(e) => setKeyword(e.target.value)}
-              />
-              <button className='btn btn-primary mt-2' disabled={loading}>
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-        {error && <p className='Error'>{error}</p>}
+      <main className="ArticlesSearch">
         {articles && (
-          <ul className='articleList'>
+          <ul className="articleList">
             {articles.map((article) => {
               const dateTime = new Date(article.createdAt).toLocaleString(
-                'es-ES'
+                "es-ES"
               );
               return (
                 <li key={article.id} data-id={article.id}>
-                  <div className='container border'>
-                    <div className='row border'>
-                      <div className='col-6 border'>
+                  <div className="container border">
+                    <div className="row border">
+                      <div className="col-6 border">
                         <Link
-                          className='tosinglepost'
-                          onClick={() => setModal(null)}
+                          className="tosinglepost"
                           to={`/article/${article.id}`}
                         >
                           <h3>{article.Title}</h3>
                         </Link>
                       </div>
-                      <div className='col-6 border'>
+                      <div className="col-6 border">
                         {
                           <time dateTime={dateTime}>
                             {new Date(article.createdAt).toLocaleString(
-                              'es-ES'
+                              "es-ES"
                             )}
                           </time>
                         }
                       </div>
                     </div>
-                    <div className='row border'>
-                      <div className='col-3 border'>
+                    <div className="row border">
+                      <div className="col-3 border">
                         <img
-                          className='avatarimg'
+                          className="avatarimg"
                           src={`${process.env.REACT_APP_BACKEND}/${article.image}`}
                           alt={`Avatar de ${article.alias}`}
                         />
-                        <p className='username'>{article.alias}</p>
+                        <p className="username">{article.alias}</p>
                       </div>
-                      <div className='col-9 border'>
+                      <div className="col-9 border">
                         <p>{article.Description}</p>
                       </div>
                     </div>
-                    <div className='row border'>
-                      <div className='col-2 border'>
+                    <div className="row border">
+                      <div className="col-2 border">
                         <DeleteArticle idArticle={article.id} />
                       </div>
-                      <div className='col-8 border'>
-                        <a href={`https://${article.url}`} target='blank'>
+                      <div className="col-8 border">
+                        <a href={`https://${article.url}`} target="blank">
                           {article.url}
                         </a>
                       </div>
-                      <div className='col-2 border'>
+                      <div className="col-2 border">
                         {article.Rating_articles && (
-                          <div className='rating'>
+                          <div className="rating">
                             <p>Avg. rating: {article.Rating_articles}</p>
                           </div>
                         )}
-                        <RatingArticles />
                       </div>
                     </div>
                   </div>
