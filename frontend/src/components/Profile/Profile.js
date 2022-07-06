@@ -27,7 +27,7 @@ const Profile = () => {
 
   if (token) userData();
   return (
-    <div className='username'>
+    <div className='profileUsername'>
       <p>{alias}</p>
       <img
         className='avatarimg'

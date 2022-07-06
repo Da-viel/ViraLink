@@ -73,11 +73,11 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    const successP = document.querySelector('p.success');
+    const successP = document.querySelector('p.Success');
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector('p.success').remove();
+        document.querySelector('p.Success').remove();
         return navigate('/login');
       }, 3000);
 
@@ -105,6 +105,7 @@ export const Register = () => {
                   value={alias || ''}
                   placeholder='Enter your alias'
                   onChange={(e) => setAlias(e.target.value)}
+                  required
                 />
               </div>
               <div className='mb-3'>
@@ -116,6 +117,7 @@ export const Register = () => {
                   value={name || ''}
                   placeholder='Enter your name'
                   onChange={(e) => setName(e.target.value)}
+                  required
                 />
               </div>
               <div className='mb-3'>
@@ -127,6 +129,7 @@ export const Register = () => {
                   value={firstName || ''}
                   placeholder='Enter your first name'
                   onChange={(e) => setFirstName(e.target.value)}
+                  required
                 />
               </div>
               <div className='mb-3'>
@@ -138,6 +141,7 @@ export const Register = () => {
                   value={lastName || ''}
                   placeholder='Enter your last name'
                   onChange={(e) => setLastName(e.target.value)}
+                  required
                 />
               </div>
               <div className='mb-3'>
@@ -151,6 +155,7 @@ export const Register = () => {
                   value={email || ''}
                   placeholder='Enter your email'
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className='mb-3'>
@@ -164,6 +169,7 @@ export const Register = () => {
                   value={password || ''}
                   placeholder='Enter your password'
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
               <div className='mb-3'>
@@ -177,6 +183,7 @@ export const Register = () => {
                   value={rPass || ''}
                   placeholder='Re-enter your password'
                   onChange={(e) => setRpass(e.target.value)}
+                  required
                 />
               </div>
               <div className='mb-3'>

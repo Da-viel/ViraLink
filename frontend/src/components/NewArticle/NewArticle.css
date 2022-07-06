@@ -26,13 +26,13 @@ textarea {
     padding-right: 2rem;
   }
   .container input {
-    padding: 0.25rem;
+    padding: 0.5rem;
   }
   input[type='text'],
   input[type='email'],
   input[type='password'],
   input[type='file'],
   textarea {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
