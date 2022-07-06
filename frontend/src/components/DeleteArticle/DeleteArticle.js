@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
-import { getArticles } from "../Articles/Articles";
 
 import "./DeleteArticle.css";
 

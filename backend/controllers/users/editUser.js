@@ -37,8 +37,17 @@ const editUser = async (req, res, next) => {
             req.body.image = imgName;
         }
 
+        // Convert `obj` to a key/value array
+
+        const asArray = Object.entries(req.body);
+
+        const filtered = asArray.filter(([key, value]) => value !== '');
+
+        // Convert the key/value array back to an object:
+        const justStrings = Object.fromEntries(filtered);
+
         //Pasamos el id del usuario y el body a la función correspondiente en la base de datos.
-        await updateUserByIdQuery(req.idUser, req.body);
+        await updateUserByIdQuery(req.idUser, justStrings);
 
         res.send({
             status: 'ok',

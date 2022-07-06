@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
 import "./Register.css";
-
+import { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useToken } from "../../context/TokenContext";
+import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
 export const Register = () => {
   let navigate = useNavigate();
   const [alias, setAlias] = useState("");
@@ -72,11 +72,11 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    const successP = document.querySelector("p.success");
+    const successP = document.querySelector("p.Success");
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector("p.success").remove();
+        document.querySelector("p.Success").remove();
         return navigate("/login");
       }, 3000);
 
@@ -105,6 +105,7 @@ export const Register = () => {
                   placeholder="Enter your alias"
                   required
                   onChange={(e) => setAlias(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -117,6 +118,7 @@ export const Register = () => {
                   placeholder="Enter your name"
                   required
                   onChange={(e) => setName(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -129,6 +131,7 @@ export const Register = () => {
                   placeholder="Enter your first name"
                   required
                   onChange={(e) => setFirstName(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -141,6 +144,7 @@ export const Register = () => {
                   placeholder="Enter your last name"
                   required
                   onChange={(e) => setLastName(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -155,6 +159,7 @@ export const Register = () => {
                   placeholder="Enter your email"
                   required
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -169,6 +174,7 @@ export const Register = () => {
                   placeholder="Enter your password"
                   required
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -183,6 +189,7 @@ export const Register = () => {
                   placeholder="Re-enter your password"
                   required
                   onChange={(e) => setRpass(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -229,8 +236,7 @@ export const Register = () => {
                 </div>
               </div>
             </form>
-            {error && <p className="error">{error}</p>}
-            {message && <p className="success">{message}</p>}
+            <ErrorOrSucces error={error} message={message} />
           </div>
         </div>
       </div>

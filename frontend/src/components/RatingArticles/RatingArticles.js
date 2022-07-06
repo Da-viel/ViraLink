@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToken } from '../../context/TokenContext';
+import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 
 import './RatingArticles.css';
 
 const RatingArticles = ({ idArticle }) => {
   let navigate = useNavigate();
   const [token] = useToken();
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
@@ -48,12 +49,12 @@ const RatingArticles = ({ idArticle }) => {
   };
 
   useEffect(() => {
-    const successP = document.querySelector('p.Success');
+    const successP = document.querySelector('p.success');
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector('p.Success').remove();
-        return navigate('/articles');
+        document.querySelector('p.success').remove();
+        navigate('/articles');
       }, 3000);
 
       return () => clearTimeout(t);
@@ -66,22 +67,21 @@ const RatingArticles = ({ idArticle }) => {
         <select
           value='DEFAULT'
           name='DEFAULT'
-          id='rating'
+          className='form-select'
           onChange={(e) => setRating(e.target.value)}
         >
-          <option value='DEFAULT' disabled>
-            Your rating
-          </option>
-          <option value='1'>1 - The lowest rating</option>
-          <option value='2'>2 - Low rating </option>
-          <option value='3'>3 - Indifferent</option>
-          <option value='4'>4 - High rating</option>
+          <option value='DEFAULT'>Your rating</option>
           <option value='5'>5 - The highest rating</option>
+          <option value='4'>4 - High rating</option>
+          <option value='3'>3 - Indifferent</option>
+          <option value='2'>2 - Low rating </option>
+          <option value='1'>1 - The lowest rating</option>
         </select>
-        <button disabled={loading}>Submit</button>
+        <button className='btn btn-primary' disabled={loading}>
+          Submit
+        </button>
       </form>
-      {error && <p className='Error'>{error}</p>}
-      {message && <p className='Success'>{message}</p>}
+      <ErrorOrSucces error={error} message={message} />
     </div>
   );
 };

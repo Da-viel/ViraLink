@@ -1,9 +1,9 @@
-import Articles from "../components/Articles/Articles";
+import Articles from '../components/Articles/Articles';
 
-const HomePage = () => {
+const HomePage = ({ articles, setArticles }) => {
   return (
     <section>
-      <Articles />
+      <Articles articles={articles} setArticles={setArticles} />
     </section>
   );
 };

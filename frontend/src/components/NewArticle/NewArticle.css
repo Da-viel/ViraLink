@@ -8,17 +8,6 @@
 .container h1 {
   color: #00afef;
 }
-.error {
-  text-align: center;
-  color: rgb(201, 0, 0);
-  margin-top: 1rem;
-}
-
-.success {
-  text-align: center;
-  color: rgb(0, 201, 27);
-  margin-top: 1rem;
-}
 
 .container input,
 textarea {
@@ -37,13 +26,13 @@ textarea {
     padding-right: 2rem;
   }
   .container input {
-    padding: 0.25rem;
+    padding: 0.5rem;
   }
   input[type='text'],
   input[type='email'],
   input[type='password'],
   input[type='file'],
   textarea {
-    font-size: 12px;
+    font-size: 16px;
   }
 }

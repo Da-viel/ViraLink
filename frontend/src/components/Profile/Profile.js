@@ -1,9 +1,11 @@
-import { useState } from 'react';
-import { useToken } from '../../context/TokenContext';
+import { useState } from "react";
+import { useToken } from "../../context/TokenContext";
+import { useUser } from "../../context/UserContext";
 
-import './Profile.css';
+import "./Profile.css";
 const Profile = () => {
   const [token] = useToken();
+  const [, setUser] = useUser();
   const [alias, setAlias] = useState(null);
   const [image, setImage] = useState(null);
   const userData = async () => {
@@ -16,9 +18,10 @@ const Profile = () => {
 
       const body = await res.json();
 
-      if (body.status === 'ok') {
+      if (body.status === "ok") {
         setAlias(body.data.user.alias);
         setImage(body.data.user.image);
+        setUser(body.data.user.alias);
       }
     } catch (err) {
       console.error(err);
@@ -27,10 +30,10 @@ const Profile = () => {
 
   if (token) userData();
   return (
-    <div className='username'>
+    <div className="profileUsername">
       <p>{alias}</p>
       <img
-        className='avatarimg'
+        className="avatarimg"
         src={`${process.env.REACT_APP_BACKEND}/${image}`}
         alt={`Avatar de ${alias}`}
       />

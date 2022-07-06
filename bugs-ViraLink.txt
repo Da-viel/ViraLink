@@ -1,0 +1,60 @@
+** ViraLink BUGS 5 de julio 2022 **
+**********************************************************************
+
+
+Error GRAVE *** PARECE QUE ESTE ERROR YA ESTÁ ARREGLADO***
+-- Edit User no actualiza los campos que desea nuestro usuario.
+Por el contrario, en caso de que el usuario no haya actualizado ningún dato,
+sobreescribe la información de la BB.DD con un campo vacío.
+
+
+
+**********************************************************************
+
+Error MODERADO
+-- El componente SearchResults debería borrar los resultados al realizar una nueva búsqueda.
+El componente SearchArticlesForms debería desaparecer una vez se muestren los resultados de la búsqueda
+
+
+Error MODERADO
+-- En nuestra HOME PAGE no se muestra la papelera que permite borrar artículos.
+Sin embargo, aparece en la página que muestra los artículos de manera individualizada.
+
+Error MODERADO
+-- En el componente SingleArticle no funciona correctamente el envío de votaciones.
+
+
+Error MODERADO
+-- Cuando aparece el modal, no debería ser posible hacer scroll en las páginas que están por detrás.
+
+**********************************************************************
+
+
+Error LEVE
+-- En Login, el CSS debería mostrar los mensajes de error de la misma manera que en Register
+
+Error LEVE
+-- En SingleArticle, el CSS debería mostrar la papelera, la url, la fecha y el componente de votaciones de manera centrada.
+
+Error LEVE
+-- ¿ Eliminar el token aunque el usuario no haga logout?
+-- Incorporar el fichero READ.ME
+
+
+**********************************************************************
+
+
+** EXTRAS para ViraLink 2.0 **
+
+
+-- Usar hooks personalizados
+-- Incorporar Services para hacer llamadas a la API o para otro tipo de servicios
+-- Utilizar useEffect para nuevas funcionalidades
+-- Mostrar el formulario de SEARCH dentro del modal
+-- Incorporar el botón DARK MODE
+
+
+
+
+
+

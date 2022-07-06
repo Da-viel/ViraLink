@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useToken } from "../../context/TokenContext";
+import { useUser } from "../../context/UserContext";
 import Navigation from "../Navigation/Navigation";
 import DeleteArticle from "../DeleteArticle/DeleteArticle";
 import RatingArticles from "../RatingArticles/RatingArticles";
@@ -8,6 +9,7 @@ import "./SingleArticle.css";
 
 const SingleArticle = ({ idArticle }) => {
   const [token] = useToken();
+  const [user] = useUser();
   const [loading, setLoading] = useState(false);
   const [articleById, setArticleById] = useState(null);
   const [update, setUpdate] = useState(false);
@@ -93,10 +95,13 @@ const SingleArticle = ({ idArticle }) => {
                         <p>{article.Description}</p>
                       </div>
                     </div>
+
                     <div className="row border">
-                      <div className="col-2 border">
-                        <DeleteArticle idArticle={article.id} />
-                      </div>
+                      {token && article.alias === user && (
+                        <div className="col-2 border">
+                          <DeleteArticle idArticle={article.id} />
+                        </div>
+                      )}
                       <div className="col-8 border">
                         <a href={`https://${article.url}`} target="blank">
                           {article.url}
@@ -108,7 +113,7 @@ const SingleArticle = ({ idArticle }) => {
                             <p>Avg. rating: {article.Rating_articles}</p>
                           </div>
                         )}
-                        <RatingArticles />
+                        <RatingArticles idArticle={article.id} />
                       </div>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useToken } from "../../context/TokenContext";
-
+import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
 const SearchArticlesForm = ({ setSearchResults }) => {
   const [token] = useToken();
   const [keyword, setKeyword] = useState("");
@@ -46,8 +46,11 @@ const SearchArticlesForm = ({ setSearchResults }) => {
    */
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    getArticlesByKeyword();
+    try {
+      getArticlesByKeyword();
+    } catch (error) {
+      setError(error);
+    }
   };
 
   // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
@@ -62,7 +65,7 @@ const SearchArticlesForm = ({ setSearchResults }) => {
       <div className="SearchArticlesForm">
         <div
           className="
-                 border shadow p-3 mb-5 bg-body rounded"
+                container border shadow p-3 mb-5 bg-body rounded"
         >
           <form onSubmit={handleSubmit}>
             <h3>Enter the keywords for searching:</h3>
@@ -78,7 +81,7 @@ const SearchArticlesForm = ({ setSearchResults }) => {
           </form>
         </div>
       </div>
-      {error && <p className="Error">{error}</p>}
+      <ErrorOrSucces error={error} />
     </>
   );
 };

@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
 import { useModal } from "../../context/ModalContext";
+import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
 
 import "./NewArticle.css";
 
-const NewArticle = () => {
+const NewArticle = ({ articles, setArticles }) => {
+  let navigate = useNavigate();
   const [token] = useToken();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -36,6 +39,7 @@ const NewArticle = () => {
         setError(body.message);
       } else {
         setMessage(body.message);
+        navigate("/articles");
       }
     } catch (err) {
       console.error(err);
@@ -54,7 +58,8 @@ const NewArticle = () => {
     if (successP) {
       const t = setTimeout(() => {
         document.querySelector("p.success").remove();
-        return setModal(null);
+        setModal(null);
+        return navigate("/articles");
       }, 3000);
 
       return () => clearTimeout(t);
@@ -127,8 +132,7 @@ const NewArticle = () => {
             </div>
           </div>
         </form>
-        {error && <p className="error">{error}</p>}
-        {message && <p className="success">{message}</p>}
+        <ErrorOrSucces error={error} message={message} />
       </div>
     </div>
   );

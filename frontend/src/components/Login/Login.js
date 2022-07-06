@@ -76,9 +76,9 @@ const Login = () => {
                   name="email"
                   className="form-control"
                   placeholder="Enter your email"
-                  required
                   value={email || ""}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -92,6 +92,7 @@ const Login = () => {
                   value={password || ""}
                   placeholder="Enter your password"
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
