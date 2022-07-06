@@ -3,7 +3,7 @@ import { useModal } from '../../context/ModalContext';
 import NewArticle from '../NewArticle/NewArticle';
 import './Navigation.css';
 
-const Navigation = () => {
+const Navigation = ({ articles, setArticles }) => {
   let navigate = useNavigate();
   const [, setModal] = useModal();
   const handleHome = () => {
@@ -39,7 +39,11 @@ const Navigation = () => {
         <div className='col-2 col-sm-2 col-md-2 col-lg-12 p-2'>
           <div className='navigationNew'>
             <button
-              onClick={() => setModal(<NewArticle />)}
+              onClick={() =>
+                setModal(
+                  <NewArticle articles={articles} setArticles={setArticles} />
+                )
+              }
               className='btn btn-primary rounded-circle'
             >
               +

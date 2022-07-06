@@ -6,39 +6,38 @@ import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 
 import './Articles.css';
 
-const Articles = () => {
-  let navigate = useNavigate();
+const Articles = ({ articles, setArticles }) => {
   const [token, setToken] = useToken();
   const [loading, setLoading] = useState(false);
-  const [articles, setarticles] = useState(null);
   const [update, setUpdate] = useState(false);
   const [error, setError] = useState(null);
-  const getArticles = async () => {
-    setLoading(true);
-    // Vaciamos el error.
-    setError(null);
-    try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND}/article`, {
-        method: 'GET',
-        headers: {
-          Authorization: token,
-        },
-      });
-      const body = await res.json();
-      if (body.status === 'error') setError(body.message);
-      setarticles(body.data.articles);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+
   // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
   // cargue de forma automática la lista de articles.
   useEffect(() => {
-    getArticles();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [update]);
+    const fetchData = async () => {
+      setLoading(true);
+      // Vaciamos el error.
+      setError(null);
+      try {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND}/article`, {
+          method: 'GET',
+          headers: {
+            Authorization: token,
+          },
+        });
+        const body = await res.json();
+        if (body.status === 'error') setError(body.message);
+        setArticles(body.data.articles);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [token]);
   return (
     <>
       <main className='articleSearch'>

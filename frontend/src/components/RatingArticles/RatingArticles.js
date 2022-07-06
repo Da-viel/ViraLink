@@ -49,12 +49,12 @@ const RatingArticles = ({ idArticle }) => {
   };
 
   useEffect(() => {
-    const successP = document.querySelector('p.Success');
+    const successP = document.querySelector('p.success');
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector('p.Success').remove();
-        return navigate('/articles');
+        document.querySelector('p.success').remove();
+        navigate('/articles');
       }, 3000);
 
       return () => clearTimeout(t);

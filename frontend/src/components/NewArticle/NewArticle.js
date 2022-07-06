@@ -6,7 +6,7 @@ import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 
 import './NewArticle.css';
 
-const NewArticle = () => {
+const NewArticle = ({ articles, setArticles }) => {
   let navigate = useNavigate();
   const [token] = useToken();
   const [title, setTitle] = useState('');
@@ -40,6 +40,7 @@ const NewArticle = () => {
         setError(body.message);
       } else {
         setMessage(body.message);
+        navigate('/articles');
       }
     } catch (err) {
       console.error(err);

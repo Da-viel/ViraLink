@@ -10,10 +10,12 @@ import { useModal } from './context/ModalContext';
 import Navigation from './components/Navigation/Navigation';
 import { useToken } from './context/TokenContext';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
   const [modal] = useModal();
   const [token] = useToken();
+  const [articles, setArticles] = useState(null);
   return (
     <div className='App'>
       <Header />
@@ -23,14 +25,19 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/article/:idArticle' element={<ArticlePage />} />
         <Route path='/article/search' element={<SearchArticlePage />} />
-        <Route path='/articles' element={<HomePage />} />
+        <Route
+          path='/articles'
+          element={<HomePage articles={articles} setArticles={setArticles} />}
+        />
         {token ? (
           <Route path='*' element={<ArticlePage />} />
         ) : (
           <Route path='*' element={<LoginPage />} />
         )}
       </Routes>
-      {!modal && token ? <Navigation /> : null}
+      {!modal && token ? (
+        <Navigation articles={articles} setArticles={setArticles} />
+      ) : null}
     </div>
   );
 }
