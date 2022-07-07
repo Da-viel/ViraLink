@@ -8,12 +8,6 @@ import "./ArticlesSearch.css";
 const ArticlesSearch = ({ articles }) => {
   const [token] = useToken();
   const [user] = useUser();
-  // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
-  // cargue de forma automática la lista de articles.
-  /* useEffect(() => {
-    getArticlesByKeyword();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [update]);*/
 
   return (
     <>

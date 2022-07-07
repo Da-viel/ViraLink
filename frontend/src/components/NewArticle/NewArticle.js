@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
+import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/ModalContext";
 import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
 
@@ -38,6 +38,7 @@ const NewArticle = ({ articles, setArticles }) => {
       if (body.status === "error") {
         setError(body.message);
       } else {
+        setArticles([...articles, NewArticle]);
         setMessage(body.message);
         navigate("/articles");
       }
@@ -58,10 +59,10 @@ const NewArticle = ({ articles, setArticles }) => {
     if (successP) {
       const t = setTimeout(() => {
         document.querySelector("p.success").remove();
-        setModal(null);
-        return navigate("/articles");
+        navigate("/articles");
       }, 3000);
 
+      setModal(null);
       return () => clearTimeout(t);
     }
   });
@@ -81,6 +82,7 @@ const NewArticle = ({ articles, setArticles }) => {
               name="title"
               className="form-control"
               value={title || ""}
+              required
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -91,6 +93,7 @@ const NewArticle = ({ articles, setArticles }) => {
               name="description"
               className="form-control"
               value={description || ""}
+              required
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
@@ -101,6 +104,7 @@ const NewArticle = ({ articles, setArticles }) => {
               name="url"
               value={url || ""}
               className="form-control"
+              required
               onChange={(e) => setUrl(e.target.value)}
             />
           </div>

@@ -1,10 +1,13 @@
-import "./Register.css";
 import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
+import { useNavigate } from "react-router-dom";
 import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
-export const Register = () => {
-  let navigate = useNavigate();
+
+import "./Register.css";
+
+const Register = () => {
+  const navigate = useNavigate();
+  const [token] = useToken();
   const [alias, setAlias] = useState("");
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -18,8 +21,11 @@ export const Register = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
+
   // Si estamos logueados redireccionamos a la página principal.
-  // if (token) return <Navigate to="/" />;
+  //Pero esta línea va a dar error, porque el useEffect entraría dentro
+  // de un código condicional.
+  //if (token) return <Navigate to="/articles" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,7 +74,7 @@ export const Register = () => {
 
   const handleBack = (e) => {
     e.preventDefault();
-    return navigate("/login");
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -105,7 +111,6 @@ export const Register = () => {
                   placeholder="Enter your alias"
                   required
                   onChange={(e) => setAlias(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-3">
@@ -118,7 +123,6 @@ export const Register = () => {
                   placeholder="Enter your name"
                   required
                   onChange={(e) => setName(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-3">
@@ -131,7 +135,6 @@ export const Register = () => {
                   placeholder="Enter your first name"
                   required
                   onChange={(e) => setFirstName(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-3">
@@ -144,7 +147,6 @@ export const Register = () => {
                   placeholder="Enter your last name"
                   required
                   onChange={(e) => setLastName(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-3">
@@ -159,7 +161,6 @@ export const Register = () => {
                   placeholder="Enter your email"
                   required
                   onChange={(e) => setEmail(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-3">
@@ -174,7 +175,6 @@ export const Register = () => {
                   placeholder="Enter your password"
                   required
                   onChange={(e) => setPassword(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-3">
@@ -189,7 +189,6 @@ export const Register = () => {
                   placeholder="Re-enter your password"
                   required
                   onChange={(e) => setRpass(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-3">

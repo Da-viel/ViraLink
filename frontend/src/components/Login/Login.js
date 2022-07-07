@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 
 import "./Login.css";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [token, setToken] = useToken();
-  let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Si estamos logueados redireccionamos a la página principal.
-  // if (token) return <Navigate to="/" />;
+  //Si estamos logueados, redireccionamos a la página principal.
+  if (token) return <Navigate to="/articles" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ const Login = () => {
         setError(body.message);
       } else {
         setToken(body.data.token);
-        return navigate("/articles");
+        navigate("/articles");
       }
     } catch (err) {
       console.error(err);
@@ -97,7 +97,7 @@ const Login = () => {
               </div>
               <div className="mb-3">
                 <p>
-                  Not registered yet? -
+                  Not registered yet? -&nbsp;
                   <NavLink to="/users" className="loginLink">
                     click here
                   </NavLink>

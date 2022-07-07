@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
+import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/ModalContext";
 import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
+
 import "./EditUser.css";
 
 const EditUser = () => {
-  let navigate = useNavigate();
-  const [, setModal] = useModal();
+  const navigate = useNavigate();
   const [token] = useToken();
+  const [, setModal] = useModal();
   const [alias, setAlias] = useState("");
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -77,9 +78,10 @@ const EditUser = () => {
     if (successP) {
       const t = setTimeout(() => {
         document.querySelector("p.Success").remove();
-        return navigate("/articles");
+        navigate("/articles");
       }, 3000);
 
+      setModal(null);
       return () => clearTimeout(t);
     }
   });
