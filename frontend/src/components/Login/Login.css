@@ -42,6 +42,7 @@ html {
   display: inline-block;
   color: #a8cf45;
 }
+
 @media screen and (min-device-width: 992px) {
   .container {
     margin-top: 4%;

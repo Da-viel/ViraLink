@@ -62,26 +62,28 @@ const RatingArticles = ({ idArticle }) => {
   });
 
   return (
-    <div className='RatingForm'>
-      <form onSubmit={handleSubmit}>
-        <select
-          value='DEFAULT'
-          name='DEFAULT'
-          className='form-select'
-          onChange={(e) => setRating(e.target.value)}
-        >
-          <option value='DEFAULT'>Your rating</option>
-          <option value='5'>5 - The highest rating</option>
-          <option value='4'>4 - High rating</option>
-          <option value='3'>3 - Indifferent</option>
-          <option value='2'>2 - Low rating </option>
-          <option value='1'>1 - The lowest rating</option>
-        </select>
-        <button className='btn btn-primary' disabled={loading}>
-          Submit
-        </button>
-      </form>
-      <ErrorOrSucces error={error} message={message} />
+    <div className='container rounded bg-info offset-0 mb-2 mt-1 pt-1'>
+      <div className='RatingForm'>
+        <form onSubmit={handleSubmit}>
+          <select
+            value='DEFAULT'
+            name='DEFAULT'
+            className='form-select mt-1'
+            onChange={(e) => setRating(e.target.value)}
+          >
+            <option value='DEFAULT'>Your rating</option>
+            <option value='5'>5 - The highest rating</option>
+            <option value='4'>4 - High rating</option>
+            <option value='3'>3 - Indifferent</option>
+            <option value='2'>2 - Low rating </option>
+            <option value='1'>1 - The lowest rating</option>
+          </select>
+          <button className='btn btn-primary mt-2 mb-2' disabled={loading}>
+            Submit
+          </button>
+        </form>
+        <ErrorOrSucces error={error} message={message} />
+      </div>
     </div>
   );
 };

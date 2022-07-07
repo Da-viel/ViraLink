@@ -3,8 +3,26 @@ img.avatarimg {
   border-radius: 100%;
   height: 4rem;
   width: 4rem;
+  margin-left: 18%;
+}
+.auxiliar {
+  background-color: #a8cf45;
+  border: left;
 }
 
+.auxurl {
+  background-color: red;
+}
+.auxurl a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+h4,
+time {
+  color: #f58634;
+}
 p.username {
   text-align: center;
 }
@@ -36,7 +54,15 @@ ul {
   .articleSearch li {
     margin-left: 5vh;
   }
-  .avatarimg {
-    margin-left: 35%;
+
+  .articleSearch {
+    margin-left: 20%;
+    width: 60%;
+  }
+}
+
+@media screen and (min-device-width: 768px) {
+  img.avatarimg {
+    margin-left: 33%;
   }
 }

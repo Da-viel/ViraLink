@@ -11,3 +11,8 @@ div.Accordion > div {
   display: flex;
   justify-content: center;
 }
+
+.avatarimg {
+  margin: 0;
+  padding: 0;
+}
