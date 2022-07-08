@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useToken } from "../../context/TokenContext";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useToken } from '../../context/TokenContext';
 
-import "./DeleteArticle.css";
+import './DeleteArticle.css';
 
 const DeleteArticle = (idArticle) => {
   let navigate = useNavigate();
@@ -16,12 +16,12 @@ const DeleteArticle = (idArticle) => {
     setLoading(true);
     setError(null);
 
-    if (window.confirm("¿Deseas eliminar el tweet?")) {
+    if (window.confirm('¿Deseas eliminar el tweet?')) {
       try {
         const res = await fetch(
           `${process.env.REACT_APP_BACKEND}/article/${idArticle}`,
           {
-            method: "DELETE",
+            method: 'DELETE',
             headers: {
               Authorization: token,
             },
@@ -30,7 +30,7 @@ const DeleteArticle = (idArticle) => {
 
         const body = await res.json();
 
-        if (body.status === "error") {
+        if (body.status === 'error') {
           setError(body.message);
         } else {
           setUpdate(!update);
@@ -45,13 +45,13 @@ const DeleteArticle = (idArticle) => {
   };
 
   useEffect(() => {
-    const successP = document.querySelector("p.Success");
+    const successP = document.querySelector('p.Success');
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector("p.Success").remove();
-        navigate("/articles");
-      }, 3000);
+        document.querySelector('p.Success').remove();
+        navigate('/articles');
+      }, 1500);
 
       return () => clearTimeout(t);
     }
@@ -62,8 +62,8 @@ const DeleteArticle = (idArticle) => {
       {token && (
         <button onClick={() => handleDeleteArticle(idArticle)}>🗑️</button>
       )}
-      {error && <p className="Error">{error}</p>}
-      {message && <p className="Success">{message}</p>}
+      {error && <p className='Error'>{error}</p>}
+      {message && <p className='Success'>{message}</p>}
     </>
   );
 };
