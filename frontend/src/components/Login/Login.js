@@ -40,6 +40,7 @@ const Login = () => {
         setError(body.message);
       } else {
         setToken(body.data.token);
+        console.log(token);
         navigate("/articles");
       }
     } catch (err) {

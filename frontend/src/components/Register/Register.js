@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useToken } from "../../context/TokenContext";
 import { useNavigate } from "react-router-dom";
 import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
 
@@ -7,7 +6,6 @@ import "./Register.css";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [token] = useToken();
   const [alias, setAlias] = useState("");
   const [name, setName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -83,7 +81,7 @@ const Register = () => {
     if (successP) {
       const t = setTimeout(() => {
         document.querySelector("p.Success").remove();
-        return navigate("/login");
+        navigate("/login");
       }, 3000);
 
       return () => clearTimeout(t);

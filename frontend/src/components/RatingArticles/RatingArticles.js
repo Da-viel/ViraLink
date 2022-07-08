@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useToken } from "../../context/TokenContext";
+import { useNavigate } from "react-router-dom";
 import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
 
 import "./RatingArticles.css";
 
 const RatingArticles = ({ idArticle }) => {
+  const navigate = useNavigate();
   const [token] = useToken();
   const [rating, setRating] = useState("");
   const [loading, setLoading] = useState(false);

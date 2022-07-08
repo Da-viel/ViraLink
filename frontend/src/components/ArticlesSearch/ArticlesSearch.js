@@ -55,11 +55,6 @@ const ArticlesSearch = ({ articles }) => {
                         </div>
                       </div>
                       <div className="row border">
-                        {token && article.alias === user && (
-                          <div className="col-2 border">
-                            <DeleteArticle idArticle={article.id} />
-                          </div>
-                        )}
                         <div className="col-8 border">
                           <a href={`https://${article.url}`} target="blank">
                             {article.url}

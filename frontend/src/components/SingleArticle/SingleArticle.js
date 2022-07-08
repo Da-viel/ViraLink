@@ -108,7 +108,7 @@ const SingleArticle = ({ idArticle }) => {
                         </a>
                       </div>
                       <div className="col-2 border">
-                        {article.Rating_articles && (
+                        {token && article.Rating_articles && (
                           <div className="rating">
                             <p>Avg. rating: {article.Rating_articles}</p>
                           </div>

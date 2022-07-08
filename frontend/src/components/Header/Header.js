@@ -28,14 +28,17 @@ const Header = () => {
               onClick={() => {
                 localStorage.removeItem("token");
                 setToken(null);
-                return navigate("/login");
+                navigate("/login");
               }}
             >
               Log Out
             </button>
             <button
               className="btn btn-primary m-1"
-              onClick={() => setModal(<EditUser />)}
+              onClick={() => {
+                navigate("/article/search");
+                setModal(<EditUser />);
+              }}
             >
               Edit Profile
             </button>

@@ -40,11 +40,12 @@ const Navigation = ({ articles, setArticles }) => {
         <div className="col-2 col-sm-2 col-md-2 col-lg-12 p-2">
           <div className="navigationNew">
             <button
-              onClick={() =>
+              onClick={() => {
+                navigate("/article/search");
                 setModal(
                   <NewArticle articles={articles} setArticles={setArticles} />
-                )
-              }
+                );
+              }}
               className="btn btn-primary rounded-circle"
             >
               +

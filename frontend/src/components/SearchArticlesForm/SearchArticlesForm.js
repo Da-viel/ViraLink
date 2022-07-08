@@ -28,6 +28,7 @@ const SearchArticlesForm = ({ setSearchResults }) => {
       const body = await res.json();
 
       if (body.status === "error") {
+        setSearchResults([]);
         setError(body.message);
       } else {
         setSearchResults(body.data.articles);
@@ -52,13 +53,6 @@ const SearchArticlesForm = ({ setSearchResults }) => {
       setError(error);
     }
   };
-
-  // Mediante "useEffect" hacemos que la primera vez que se monta el componente se
-  // cargue de forma automática la lista de articles.
-  /* useEffect(() => {
-      getArticlesByKeyword();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [update]);*/
 
   return (
     <>
