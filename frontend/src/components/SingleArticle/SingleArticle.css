@@ -1,0 +1,14 @@
+.container select {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .ArticleById li {
+    margin-left: 5vh;
+  }
+
+  .ArticleById {
+    margin-left: 20%;
+    width: 60%;
+  }
+}

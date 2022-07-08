@@ -16,7 +16,7 @@ const DeleteArticle = (idArticle) => {
     setLoading(true);
     setError(null);
 
-    if (window.confirm('¿Deseas eliminar el tweet?')) {
+    if (window.confirm('¿Do you wat to delete this article?')) {
       try {
         const res = await fetch(
           `${process.env.REACT_APP_BACKEND}/article/${idArticle}`,
@@ -58,13 +58,18 @@ const DeleteArticle = (idArticle) => {
   });
 
   return (
-    <>
+    <div className='container'>
       {token && (
-        <button onClick={() => handleDeleteArticle(idArticle)}>🗑️</button>
+        <button
+          className='col-12 btn btn-danger'
+          onClick={() => handleDeleteArticle(idArticle)}
+        >
+          Borrar
+        </button>
       )}
       {error && <p className='Error'>{error}</p>}
       {message && <p className='Success'>{message}</p>}
-    </>
+    </div>
   );
 };
 

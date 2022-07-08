@@ -70,76 +70,68 @@ const NewArticle = ({ articles, setArticles }) => {
   });
 
   return (
-    <div className='container'>
-      <div
-        className='
-                 border shadow p-3 mb-5 bg-body rounded'
-      >
-        <h1>New Article</h1>
-        <form onSubmit={handleSubmit}>
-          <div className='mb-3'>
-            <label htmlFor='title'>Title:</label>
-            <input
-              type='text'
-              name='title'
-              className='form-control'
-              value={title || ''}
-              required
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='description'>Description:</label>
-            <textarea
-              type='text'
-              name='description'
-              className='form-control'
-              value={description || ''}
-              required
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='url'>URL:</label>
-            <input
-              type='text'
-              name='url'
-              value={url || ''}
-              className='form-control'
-              required
-              onChange={(e) => setUrl(e.target.value)}
-            />
-          </div>
+    <div className='container border shadow p-3 mb-5 bg-body rounded'>
+      <h1>New Article</h1>
+      <form onSubmit={handleSubmit}>
+        <div className='mb-3'>
+          <label htmlFor='title'>Title:</label>
+          <input
+            type='text'
+            name='title'
+            className='form-control'
+            value={title || ''}
+            required
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className='mb-3'>
+          <label htmlFor='description'>Description:</label>
+          <textarea
+            type='text'
+            name='description'
+            className='form-control'
+            value={description || ''}
+            required
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <div className='mb-3'>
+          <label htmlFor='url'>URL:</label>
+          <input
+            type='text'
+            name='url'
+            value={url || ''}
+            className='form-control'
+            required
+            onChange={(e) => setUrl(e.target.value)}
+          />
+        </div>
 
-          <div className='row'>
-            <div className='col-6'>
-              <div className='mb-3'>
-                {
-                  <button
-                    onClick={handleBack}
-                    className='btn btn-danger col-12'
-                  >
-                    Back
-                  </button>
-                }
-              </div>
-            </div>
-            <div className='col-6'>
-              <div className='mb-3'>
-                {
-                  <button
-                    onClick={handleSubmit}
-                    className='btn btn-primary col-12'
-                  >
-                    Submit
-                  </button>
-                }
-              </div>
+        <div className='row'>
+          <div className='col-6'>
+            <div className='mb-3'>
+              {
+                <button onClick={handleBack} className='btn btn-danger col-12'>
+                  Back
+                </button>
+              }
             </div>
           </div>
-        </form>
-        <ErrorOrSucces error={error} message={message} />
-      </div>
+          <div className='col-6'>
+            <div className='mb-3'>
+              {
+                <button
+                  onClick={handleSubmit}
+                  className='btn btn-primary col-12'
+                >
+                  Submit
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+      </form>
+      <ErrorOrSucces error={error} message={message} />
     </div>
   );
 };

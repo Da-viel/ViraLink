@@ -43,7 +43,7 @@ html {
   color: #a8cf45;
 }
 
-@media screen and (min-device-width: 992px) {
+@media (min-width: 992px) {
   .container {
     margin-top: 4%;
   }
@@ -56,9 +56,7 @@ html {
   .container h1 {
     text-align: center;
   }
-  .container input {
-    padding: 1rem;
-  }
+
   .container input::placeholder {
     font-size: 0.65rem;
     padding-left: 0.25rem;

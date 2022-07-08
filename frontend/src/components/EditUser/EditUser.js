@@ -201,6 +201,7 @@ const EditUser = () => {
               <div className='mb-3'>
                 <input
                   type='file'
+                  className='form-control'
                   onChange={(e) => {
                     setSelectedFile(e.target.files[0]);
                   }}

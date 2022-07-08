@@ -1,3 +1,3 @@
 export default function ModalPage() {
-  return <div></div>;
+  return <div className='container'></div>;
 }

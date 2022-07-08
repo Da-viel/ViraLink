@@ -14,7 +14,7 @@ textarea {
   width: 100%;
 }
 
-@media screen and (min-device-width: 992px) {
+@media (min-width: 992px) {
   .container {
     margin-top: 5%;
     padding: 0rem;
@@ -24,9 +24,6 @@ textarea {
     margin-top: 5%;
     padding-left: 2rem;
     padding-right: 2rem;
-  }
-  .container input {
-    padding: 0.5rem;
   }
   input[type='text'],
   input[type='email'],
