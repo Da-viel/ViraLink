@@ -13,6 +13,7 @@ import Header from './components/Header/Header';
 
 import './App.css';
 import ModalPage from './pages/ModalPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   const [modal] = useModal();
@@ -33,14 +34,7 @@ function App() {
           path='/articles'
           element={<HomePage articles={articles} setArticles={setArticles} />}
         />
-        {token ? (
-          <Route
-            path='*'
-            element={<HomePage articles={articles} setArticles={setArticles} />}
-          />
-        ) : (
-          <Route path='*' element={<LoginPage />} />
-        )}
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
       {!modal && token ? (
         <Navigation articles={articles} setArticles={setArticles} />

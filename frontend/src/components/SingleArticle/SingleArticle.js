@@ -68,7 +68,7 @@ const SingleArticle = ({ idArticle }) => {
               return (
                 <li key={article.id} data-id={article.id}>
                   <div className='container shadow p-3 pt-2 mb-5 bg-body rounded'>
-                    <div className='row mb-1'>
+                    <div className='row border-bottom  mb-1'>
                       <div className='col-6 d-flex justify-content-center align-items-center'>
                         {token && <h4>{article.Title}</h4>}
                       </div>
@@ -95,6 +95,17 @@ const SingleArticle = ({ idArticle }) => {
                         <p>{article.Description}</p>
                       </div>
                     </div>
+                    <div className='row'>
+                      <div className='auxurl col-12 mb-1 bg-info mt-1 rounded d-flex justify-content-center align-items-center '>
+                        <a
+                          className='rounded'
+                          href={`${article.url}`}
+                          target='blank'
+                        >
+                          {article.url}
+                        </a>
+                      </div>
+                    </div>
                     <div className='row '>
                       {token && article.alias === user && (
                         <div className='col-6 border d-flex justify-content-center align-items-center'>
@@ -109,17 +120,6 @@ const SingleArticle = ({ idArticle }) => {
                           </div>
                         )}
                         <RatingArticles idArticle={article.id} />
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='auxurl col-12 bg-info mt-1 rounded d-flex justify-content-center align-items-center '>
-                        <a
-                          className='rounded'
-                          href={`${article.url}`}
-                          target='blank'
-                        >
-                          {article.url}
-                        </a>
                       </div>
                     </div>
                   </div>

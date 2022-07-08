@@ -73,11 +73,11 @@ const RatingArticles = ({ idArticle }) => {
       <form onSubmit={handleSubmit}>
         <div className='row'>
           <select
-            name='DEFAULT'
+            defaultValue={'DEFAULT'}
             className='form-select mt-1'
             onChange={(e) => setRating(e.target.value)}
           >
-            <option value='DEFAULT' selected disabled>
+            <option value='DEFAULT' disabled>
               Your rating
             </option>
             <option value='5'>5 - The highest rating</option>

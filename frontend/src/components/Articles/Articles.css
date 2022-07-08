@@ -27,6 +27,10 @@ p.username {
   text-align: center;
 }
 
+.container select {
+  width: 100%;
+}
+
 .avatarimg {
   margin-left: 20%;
 }
@@ -46,7 +50,7 @@ ul {
   list-style: none;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-device-width: 992px) {
   .articleSearch li {
     margin-left: 5vh;
   }
@@ -57,7 +61,7 @@ ul {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-device-width: 768px) {
   img.avatarimg {
     margin-left: 33%;
   }

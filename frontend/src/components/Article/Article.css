@@ -1,0 +1,16 @@
+.val {
+  background-color: #f58634;
+}
+h4:hover {
+  color: #00afef;
+}
+
+.auxurl a {
+  overflow: hidden;
+}
+
+.auxurl a:hover {
+  color: #f58634;
+  padding: 0.1rem;
+  background-color: antiquewhite;
+}

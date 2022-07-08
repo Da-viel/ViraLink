@@ -43,11 +43,13 @@ const Article = ({ article }) => {
             {article.url}
           </a>
         </div>
-        <div className='col-4'>
-          {article.Rating_articles && (
+        <div className='val col-4 col-lg-3 col-xl-3 col-xxl-3 mx-lg-3 mx-xl-3 mx-xxl-3 d-flex justify-content-center align-items-center rounded p-1 mt-1 mb-2'>
+          {article.Rating_articles ? (
             <div className='rating'>
               <p>Avg. rating: {article.Rating_articles}</p>
             </div>
+          ) : (
+            <p>Avg. rating: 0</p>
           )}
         </div>
       </div>

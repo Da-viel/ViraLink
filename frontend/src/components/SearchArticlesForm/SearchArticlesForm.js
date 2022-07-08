@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useToken } from "../../context/TokenContext";
-import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
+import { useState } from 'react';
+import { useToken } from '../../context/TokenContext';
+import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 const SearchArticlesForm = ({ setSearchResults }) => {
   const [token] = useToken();
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState('');
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useState(false);
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ const SearchArticlesForm = ({ setSearchResults }) => {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND}/article/${keyword}`,
         {
-          method: "GET",
+          method: 'GET',
           headers: {
             Authorization: token,
           },
@@ -27,7 +27,7 @@ const SearchArticlesForm = ({ setSearchResults }) => {
 
       const body = await res.json();
 
-      if (body.status === "error") {
+      if (body.status === 'error') {
         setSearchResults([]);
         setError(body.message);
       } else {
@@ -55,28 +55,26 @@ const SearchArticlesForm = ({ setSearchResults }) => {
   };
 
   return (
-    <>
-      <div className="SearchArticlesForm">
-        <div
-          className="
-                container border shadow p-3 mb-5 bg-body rounded"
-        >
-          <form onSubmit={handleSubmit}>
-            <h3>Enter the keywords for searching:</h3>
-            <input
-              className="col-12 form-control p-2"
-              type="search"
-              name="search"
-              onChange={(e) => setKeyword(e.target.value)}
-            />
-            <button className="btn btn-primary mt-2" disabled={loading}>
-              Submit
-            </button>
-          </form>
-        </div>
+    <div>
+      <div
+        className='
+             container border shadow p-3 mb-5 bg-body rounded'
+      >
+        <form className='SearchArticlesForm' onSubmit={handleSubmit}>
+          <h3>Enter the keywords for searching:</h3>
+          <input
+            className='col-12 form-control p-2'
+            type='search'
+            name='search'
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+          <button className='btn btn-primary mt-2' disabled={loading}>
+            Submit
+          </button>
+        </form>
       </div>
       <ErrorOrSucces error={error} />
-    </>
+    </div>
   );
 };
 
