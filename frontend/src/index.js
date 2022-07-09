@@ -1,24 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { TokenProvider } from "./context/TokenContext";
 import { ModalProvider } from "./context/ModalContext";
 import { UserProvider } from "./context/UserContext";
+import { MessageProvider } from "./context/MessageContext";
+
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <TokenProvider>
     <ModalProvider>
-      <UserProvider>
-        <BrowserRouter>
-          <React.StrictMode>
-            <App />
-          </React.StrictMode>
-        </BrowserRouter>
-      </UserProvider>
+      <MessageProvider>
+        <UserProvider>
+          <BrowserRouter>
+            <React.StrictMode>
+              <App />
+            </React.StrictMode>
+          </BrowserRouter>
+        </UserProvider>
+      </MessageProvider>
     </ModalProvider>
   </TokenProvider>
 );

@@ -22,8 +22,3 @@ const SearchArticlePage = () => {
 };
 
 export default SearchArticlePage;
-
-/*
-
-<ArticlesSearch articles={searchResults} />
-*/

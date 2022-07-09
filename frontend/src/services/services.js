@@ -8,7 +8,7 @@ export const getProfileService = async ({ token }) => {
 
     const body = await res.json();
 
-    if (body.status === 'ok') {
+    if (body.status === "ok") {
       return body;
     }
   } catch (err) {

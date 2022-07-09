@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useToken } from '../../context/TokenContext';
-import { useUser } from '../../context/UserContext';
-import Navigation from '../Navigation/Navigation';
-import DeleteArticle from '../DeleteArticle/DeleteArticle';
-import RatingArticles from '../RatingArticles/RatingArticles';
+import { useEffect, useState } from "react";
+import { useToken } from "../../context/TokenContext";
+import { useUser } from "../../context/UserContext";
+import Navigation from "../Navigation/Navigation";
+import DeleteArticle from "../DeleteArticle/DeleteArticle";
+import RatingArticles from "../RatingArticles/RatingArticles";
 
-import './SingleArticle.css';
+import "./SingleArticle.css";
 
 const SingleArticle = ({ idArticle }) => {
   const [token] = useToken();
@@ -27,7 +27,7 @@ const SingleArticle = ({ idArticle }) => {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND}/article/${idArticle}/single`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
             Authorization: token,
           },
@@ -36,7 +36,7 @@ const SingleArticle = ({ idArticle }) => {
 
       const body = await res.json();
 
-      if (body.status === 'error') setError(body.message);
+      if (body.status === "error") setError(body.message);
 
       setArticleById(body.data.article);
     } catch (err) {
@@ -55,67 +55,67 @@ const SingleArticle = ({ idArticle }) => {
 
   return (
     <>
-      <main className='ArticleById'>
+      <main className="ArticleById">
         <Navigation />
-        {error && <p className='Error'>{error}</p>}
+        {error && <p className="Error">{error}</p>}
 
         {articleById && (
-          <ul className='articleList'>
+          <ul className="articleList">
             {articleById.map((article) => {
               const dateTime = new Date(article.createdAt).toLocaleString(
-                'es-ES'
+                "es-ES"
               );
               return (
-                <li key={article.id} data-id={article.id}>
-                  <div className='container shadow p-3 pt-2 mb-5 bg-body rounded'>
-                    <div className='row border-bottom  mb-1'>
-                      <div className='col-6 d-flex justify-content-center align-items-center'>
-                        {token && <h4>{article.Title}</h4>}
+                <li key={article.id}>
+                  <div className="container shadow p-3 pt-2 mb-5 bg-body rounded">
+                    <div className="row border-bottom  mb-1">
+                      <div className="col-6 d-flex justify-content-center align-items-center">
+                        <h4>{article.Title}</h4>
                       </div>
-                      <div className='col-6 mb-1 d-flex justify-content-center align-items-center'>
+                      <div className="col-6 mb-1 d-flex justify-content-center align-items-center">
                         {
                           <time dateTime={dateTime}>
                             {new Date(article.createdAt).toLocaleString(
-                              'es-ES'
+                              "es-ES"
                             )}
                           </time>
                         }
                       </div>
                     </div>
-                    <div className='row pb-1 '>
-                      <div className='col-4 '>
+                    <div className="row pb-1 ">
+                      <div className="col-4 ">
                         <img
-                          className='avatarimg  mt-2'
+                          className="avatarimg  mt-2"
                           src={`${process.env.REACT_APP_BACKEND}/${article.image}`}
                           alt={`Avatar de ${article.alias}`}
                         />
-                        <p className='username'>{article.alias}</p>
+                        <p className="username">{article.alias}</p>
                       </div>
-                      <div className='auxiliar col-8 rounded d-flex justify-content-center align-items-center '>
+                      <div className="auxiliar col-8 rounded d-flex justify-content-center align-items-center ">
                         <p>{article.Description}</p>
                       </div>
                     </div>
-                    <div className='row'>
-                      <div className='auxurl col-12 mb-1 bg-info mt-1 rounded d-flex justify-content-center align-items-center '>
+                    <div className="row">
+                      <div className="auxurl col-12 mb-1 bg-info mt-1 rounded d-flex justify-content-center align-items-center ">
                         <a
-                          className='rounded'
+                          className="rounded"
                           href={`${article.url}`}
-                          target='blank'
+                          target="blank"
                         >
                           {article.url}
                         </a>
                       </div>
                     </div>
-                    <div className='row '>
+                    <div className="row ">
                       {token && article.alias === user && (
-                        <div className='col-6 border d-flex justify-content-center align-items-center'>
+                        <div className="col-6 border d-flex justify-content-center align-items-center">
                           <DeleteArticle idArticle={article.id} />
                         </div>
                       )}
 
-                      <div className='col-6 border d-flex justify-content-center align-items-center'>
+                      <div className="col-6 border d-flex justify-content-center align-items-center">
                         {token && article.Rating_articles && (
-                          <div className='rating'>
+                          <div className="rating">
                             <p>Avg. rating: {article.Rating_articles}</p>
                           </div>
                         )}

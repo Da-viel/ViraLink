@@ -13,6 +13,9 @@ html {
   justify-content: center;
   align-items: center;
 }
+img {
+  margin-bottom: 4%;
+}
 
 .loginLink {
   color: #f58634;

@@ -40,7 +40,6 @@ const Login = () => {
         setError(body.message);
       } else {
         setToken(body.data.token);
-        console.log(token);
         navigate("/articles");
       }
     } catch (err) {
@@ -53,6 +52,9 @@ const Login = () => {
   return (
     <div className="center">
       <div className="welcome">
+        <div className="logoHeader">
+          <img src="/logo732.png " alt="logo ViraLink" />
+        </div>
         <h2>Welcome to ViraLink</h2>
         <h4>
           The best social media application to <p>share your URLs</p>
