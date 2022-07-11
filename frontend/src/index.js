@@ -1,20 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import { TokenProvider } from "./context/TokenContext";
-import { ModalProvider } from "./context/ModalContext";
-import { UserProvider } from "./context/UserContext";
-import { MessageProvider } from "./context/MessageContext";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { TokenProvider } from './context/TokenContext';
+import { ModalProvider } from './context/ModalContext';
+import { UserProvider } from './context/UserContext';
+import { MessageProvider } from './context/MessageContext';
 
-import "./index.css";
+import './index.css';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <TokenProvider>
-    <ModalProvider>
-      <MessageProvider>
+    <MessageProvider>
+      <ModalProvider>
         <UserProvider>
           <BrowserRouter>
             <React.StrictMode>
@@ -22,8 +22,8 @@ root.render(
             </React.StrictMode>
           </BrowserRouter>
         </UserProvider>
-      </MessageProvider>
-    </ModalProvider>
+      </ModalProvider>
+    </MessageProvider>
   </TokenProvider>
 );
 

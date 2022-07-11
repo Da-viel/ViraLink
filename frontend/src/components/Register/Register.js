@@ -27,11 +27,6 @@ const Register = () => {
 
   //useToast();
 
-  // Si estamos logueados redireccionamos a la página principal.
-  //Pero esta línea va a dar error, porque el useEffect entraría dentro
-  // de un código condicional.
-  //if (token) return <Navigate to="/articles" />;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
