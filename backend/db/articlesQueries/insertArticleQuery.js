@@ -1,7 +1,7 @@
 const getConnection = require('../getConnection');
 const { generateError } = require('../../helpers');
 
-const insertArticleQuery = async (url, title, description, idUser) => {
+const insertArticleQuery = async (newUrl, title, description, idUser) => {
     let connection;
 
     try {
@@ -10,7 +10,7 @@ const insertArticleQuery = async (url, title, description, idUser) => {
         //Nos aseguramos que la url no se repite
         const [selectArticle] = await connection.query(
             `SELECT url FROM articles WHERE url= ? AND idUser= ?`,
-            [url, idUser]
+            [newUrl, idUser]
         );
 
         if (selectArticle.length > 0)
@@ -19,7 +19,7 @@ const insertArticleQuery = async (url, title, description, idUser) => {
         //Creamos una nueva publicación
         const [newArticle] = await connection.query(
             `INSERT INTO articles (url, title, description, idUser) VALUES(?, ?, ?, ?)`,
-            [url, title, description, idUser]
+            [newUrl, title, description, idUser]
         );
 
         // Retornamos el id del elemento creado.

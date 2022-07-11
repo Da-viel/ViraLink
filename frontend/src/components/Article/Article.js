@@ -12,7 +12,7 @@ const Article = ({ article }) => {
         <div className='col-6 d-flex justify-content-center align-items-center'>
           {token && (
             <Link className='tosinglepost' to={`/article/${article.id}`}>
-              <h4>{article.Title}</h4>
+              <h4 className='titleh4'>{article.Title}</h4>
             </Link>
           )}
         </div>

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useToken } from "../../context/TokenContext";
-import Article from "../Article/Article";
-import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
+import { useEffect, useState } from 'react';
+import { useToken } from '../../context/TokenContext';
+import Article from '../Article/Article';
+import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 
-import "./Articles.css";
+import './Articles.css';
 
 const Articles = ({ articles, setArticles }) => {
   const [token] = useToken();
@@ -19,7 +19,7 @@ const Articles = ({ articles, setArticles }) => {
       setError(null);
       const params = token
         ? {
-            method: "GET",
+            method: 'GET',
             headers: {
               Authorization: token,
             },
@@ -33,7 +33,7 @@ const Articles = ({ articles, setArticles }) => {
         );
 
         const body = await res.json();
-        if (body.status === "error") setError(body.message);
+        if (body.status === 'error') setError(body.message);
         setArticles(body.data.articles);
       } catch (err) {
         setError(err.message);
@@ -46,13 +46,19 @@ const Articles = ({ articles, setArticles }) => {
   }, [token]);
   return (
     <>
-      <main className="articleSearch">
+      <main className='articleSearch'>
         <ErrorOrSucces error={error} />
         {articles && (
-          <ul className="articleList">
+          <ul className='articleList'>
             {articles.map((article) => {
+              let key;
+              if (!article.id) {
+                key = 'newArticle';
+              } else {
+                key = article.id;
+              }
               return (
-                <li key={article.id}>
+                <li key={key}>
                   <Article article={article} />
                 </li>
               );

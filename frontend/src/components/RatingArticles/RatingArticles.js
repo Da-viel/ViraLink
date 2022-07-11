@@ -55,6 +55,7 @@ const RatingArticles = ({ idArticle }) => {
     if (successP) {
       const t = setTimeout(() => {
         document.querySelector('p.success').remove();
+        navigate('/articles');
       }, 3000);
 
       return () => clearTimeout(t);
@@ -62,6 +63,7 @@ const RatingArticles = ({ idArticle }) => {
     if (errorP) {
       const t = setTimeout(() => {
         document.querySelector('p.error').remove();
+        navigate('/articles');
       }, 3000);
 
       return () => clearTimeout(t);

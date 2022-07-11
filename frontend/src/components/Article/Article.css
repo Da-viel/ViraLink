@@ -2,7 +2,7 @@
   background-color: #f58634;
 }
 
-h4:hover {
+.titleh4:hover {
   color: #00afef;
 }
 
@@ -10,7 +10,7 @@ h4:hover {
   overflow: hidden;
 }
 
-.auxurl a:hover {
+.auxurl:hover {
   color: #f58634;
   padding: 0.1rem;
   background-color: antiquewhite;

@@ -6,14 +6,20 @@ const newArticle = async (req, res, next) => {
         // Obtenemos los campos del body y del header
         const { url, title, description } = req.body;
         const idUser = req.idUser;
+        let newUrl;
+        if (!url.includes('https://')) {
+            newUrl = 'https://' + url;
+        } else {
+            newUrl = url;
+        }
 
-        // Si faltan campos lanzamos un error.
         if (!url || !title || !description) {
+            // Si faltan campos lanzamos un error.
             throw generateError('Faltan campos', 400);
         }
 
         const idArticle = await insertArticleQuery(
-            url,
+            newUrl,
             title,
             description,
             idUser
