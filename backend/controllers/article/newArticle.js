@@ -7,15 +7,18 @@ const newArticle = async (req, res, next) => {
         const { url, title, description } = req.body;
         const idUser = req.idUser;
         let newUrl;
-        if (!url.includes('https://')) {
-            newUrl = 'https://' + url;
-        } else {
-            newUrl = url;
-        }
 
         if (!url || !title || !description) {
             // Si faltan campos lanzamos un error.
             throw generateError('Faltan campos', 400);
+        }
+
+        //Comprobamos que la url incluye el protocolo de Internet. En caso contrario,
+        // lo añadiremos a la url enviada desde el front-end
+        if (!url.includes('https://')) {
+            newUrl = 'https://' + url;
+        } else {
+            newUrl = url;
         }
 
         const idArticle = await insertArticleQuery(

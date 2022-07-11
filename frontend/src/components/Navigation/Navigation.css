@@ -4,6 +4,7 @@
   width: 3rem;
   height: 3rem;
   background-color: #00afef;
+  margin-bottom: 10%;
 }
 
 .navigationHome > p,
@@ -16,7 +17,7 @@
   .container-fluid {
     max-width: 140px;
     margin: 0;
-    bottom: 32%;
+    bottom: 20%;
     left: 1%;
   }
   .navigationHome > p,

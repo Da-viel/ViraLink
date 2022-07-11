@@ -61,9 +61,9 @@ const NewArticle = ({ articles, setArticles }) => {
       const t = setTimeout(() => {
         document.querySelector("p.success").remove();
         navigate("/articles");
-      }, 3000);
+        setModal(null);
+      }, 2000);
 
-      setModal(null);
       return () => clearTimeout(t);
     }
   });

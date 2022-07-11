@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useToken } from '../../context/TokenContext';
-import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToken } from "../../context/TokenContext";
+import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
 
-import './DeleteArticle.css';
+import "./DeleteArticle.css";
 
 const DeleteArticle = (idArticle) => {
   let navigate = useNavigate();
@@ -17,12 +17,12 @@ const DeleteArticle = (idArticle) => {
     setLoading(true);
     setError(null);
 
-    if (window.confirm('¿Do you wat to delete this article?')) {
+    if (window.confirm("¿Do you wat to delete this article?")) {
       try {
         const res = await fetch(
           `${process.env.REACT_APP_BACKEND}/article/${idArticle}`,
           {
-            method: 'DELETE',
+            method: "DELETE",
             headers: {
               Authorization: token,
             },
@@ -31,7 +31,7 @@ const DeleteArticle = (idArticle) => {
 
         const body = await res.json();
 
-        if (body.status === 'error') {
+        if (body.status === "error") {
           setError(body.message);
         } else {
           setUpdate(!update);
@@ -46,12 +46,12 @@ const DeleteArticle = (idArticle) => {
   };
 
   useEffect(() => {
-    const successP = document.querySelector('p.success');
+    const successP = document.querySelector("p.success");
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector('p.success').remove();
-        navigate('/articles');
+        document.querySelector("p.success").remove();
+        navigate("/articles");
       }, 3000);
 
       return () => clearTimeout(t);
@@ -59,10 +59,10 @@ const DeleteArticle = (idArticle) => {
   });
 
   return (
-    <div className='container'>
+    <div className="container">
       {token && (
         <button
-          className='col-12 btn btn-danger'
+          className="col-12 btn btn-danger"
           onClick={() => handleDeleteArticle(idArticle)}
         >
           Borrar
