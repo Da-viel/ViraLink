@@ -6,12 +6,14 @@
   color: #00afef;
 }
 
-.auxurl a {
+.auxurl {
   overflow: hidden;
+  margin-right: 0px;
+}
+.auxurl a {
+  text-align: justify;
 }
 
-.auxurl:hover {
+.auxurl a:hover {
   color: #f58634;
-  padding: 0.1rem;
-  background-color: antiquewhite;
 }

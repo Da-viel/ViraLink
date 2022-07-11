@@ -21,9 +21,8 @@ const Navigation = ({ articles, setArticles }) => {
               onClick={handleHome}
               className='btn btn-primary rounded-circle'
             >
-              🏠
+              
             </button>
-            <p className='mt-2'>HOME</p>
           </div>
         </div>
         <div className='col-2 col-sm-2 col-md-2 col-lg-12 p-2'>
@@ -36,7 +35,6 @@ const Navigation = ({ articles, setArticles }) => {
             >
               🔎
             </button>
-            <p className='mt-2'>SEARCH</p>
           </div>
         </div>
         <div className='col-2 col-sm-2 col-md-2 col-lg-12 p-2'>
@@ -50,9 +48,8 @@ const Navigation = ({ articles, setArticles }) => {
               }}
               className='btn btn-primary rounded-circle'
             >
-              +
+              <h3>+</h3>
             </button>
-            <p className='mt-2'>NEW ARTICLE</p>
           </div>
         </div>
       </div>

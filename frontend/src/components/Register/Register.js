@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMessage } from '../../context/MessageContext';
 import { Toaster } from 'react-hot-toast';
-import { useToast } from '../../hooks/useToast';
+import useToast from '../../hooks/useToast';
 import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 
 import './Register.css';
@@ -25,7 +25,7 @@ const Register = () => {
   const [alert, setAlert] = useState(null);
   const [error, setError] = useState(null);
 
-  //useToast();
+  useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -250,7 +250,7 @@ const Register = () => {
               transform: 'translateX(-50%)',
             }}
           />
-          <ErrorOrSucces error={error} message={alert} />
+          {/* <ErrorOrSucces error={error} message={alert} /> */}
         </div>
       </div>
     </div>
