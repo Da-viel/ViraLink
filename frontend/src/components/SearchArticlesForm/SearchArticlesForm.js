@@ -60,7 +60,7 @@ const SearchArticlesForm = ({ setSearchResults }) => {
         className='
              container border shadow p-3 mb-5 bg-body rounded'
       >
-        <form className='SearchArticlesForm' onSubmit={handleSubmit}>
+        <form className='SearchArticlesForm' onChange={handleSubmit}>
           <h3>Enter the keywords for searching:</h3>
           <input
             className='col-12 form-control p-2'

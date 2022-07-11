@@ -1,10 +1,10 @@
-.Error {
+.error {
   text-align: center;
   color: rgb(201, 0, 0);
   margin-top: 1rem;
 }
 
-.Success {
+.success {
   text-align: center;
   color: rgb(0, 201, 27);
   margin-top: 1rem;

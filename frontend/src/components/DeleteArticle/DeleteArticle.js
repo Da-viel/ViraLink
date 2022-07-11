@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToken } from '../../context/TokenContext';
+import { ErrorOrSucces } from '../ErrorOrSucces/ErrorOrSucces';
 
 import './DeleteArticle.css';
 
@@ -45,13 +46,13 @@ const DeleteArticle = (idArticle) => {
   };
 
   useEffect(() => {
-    const successP = document.querySelector('p.Success');
+    const successP = document.querySelector('p.success');
 
     if (successP) {
       const t = setTimeout(() => {
-        document.querySelector('p.Success').remove();
+        document.querySelector('p.success').remove();
         navigate('/articles');
-      }, 1500);
+      }, 3000);
 
       return () => clearTimeout(t);
     }
@@ -67,8 +68,7 @@ const DeleteArticle = (idArticle) => {
           Borrar
         </button>
       )}
-      {error && <p className='Error'>{error}</p>}
-      {message && <p className='Success'>{message}</p>}
+      <ErrorOrSucces error={error} message={message} />
     </div>
   );
 };
