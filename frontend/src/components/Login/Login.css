@@ -37,6 +37,7 @@ img {
 }
 .welcome h2 {
   color: #00afef;
+  text-shadow: 1.5px 1.5px #036c92;
 }
 .welcome h4 {
   color: #f58634;

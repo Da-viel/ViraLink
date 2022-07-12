@@ -5,7 +5,9 @@ import "./Article.css";
 
 const Article = ({ article }) => {
   const [token] = useToken();
-  const dateTime = new Date(article.createdAt).toLocaleString("es-ES");
+  const dateTime = new Date(article.createdAt).toLocaleString("es-ES", {
+    timeZone: "UTC",
+  });
   return (
     <div className="container shadow p-3 pt-2 mb-5 bg-body rounded">
       <div className="row mb-1 border-bottom">
@@ -19,7 +21,9 @@ const Article = ({ article }) => {
         <div className="col-6 mb-1 d-flex justify-content-center align-items-center">
           {
             <time dateTime={dateTime}>
-              {new Date(article.createdAt).toLocaleString("es-ES")}
+              {new Date(article.createdAt).toLocaleString("es-ES", {
+                timeZone: "UTC",
+              })}
             </time>
           }
         </div>
@@ -43,13 +47,13 @@ const Article = ({ article }) => {
             {article.url}
           </a>
         </div>
-        <div className="val col-4 col-lg-3 col-xl-3 col-xxl-3 mx-lg-3 mx-xl-3 mx-xxl-3 d-flex justify-content-center align-items-center rounded p-1 mt-1 mb-2">
+        <div className="val col-4 d-flex justify-content-center align-items-center rounded p-1 mt-1 mb-2">
           {article.Rating_articles ? (
             <div className="rating">
               <p>Avg. rating: {article.Rating_articles}</p>
             </div>
           ) : (
-            <p>Avg. rating: </p>
+            <p>Avg. rating: N/A </p>
           )}
         </div>
       </div>

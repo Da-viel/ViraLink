@@ -14,7 +14,7 @@ const Navigation = ({ articles, setArticles }) => {
 
   return (
     <div className="container-fluid border shadow bg-body rounded fixed-bottom p-lg-5 bg-white ">
-      <div className="row justify-content-between mw-200 ">
+      <div className="row justify-content-evenly mw-200 ">
         <div className="col-2 col-sm-2 col-md-2 col-lg-12 p-2">
           <div className="navigationHome">
             <button
