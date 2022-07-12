@@ -1,10 +1,10 @@
-import Articles from '../components/Articles/Articles';
+import Articles from "../components/Articles/Articles";
 
 const HomePage = ({ articles, setArticles }) => {
   return (
-    <section>
+    <header>
       <Articles articles={articles} setArticles={setArticles} />
-    </section>
+    </header>
   );
 };
 

@@ -1,3 +1,13 @@
 .avatarimg {
   margin: 0;
 }
+
+div.avatarcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aliasparagraph {
+  font-weight: bold;
+}

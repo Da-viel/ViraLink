@@ -3,13 +3,42 @@
   padding: 0;
   box-sizing: border-box;
 }
-img {
-  width: 8rem;
-}
+
 div.allHeader {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-content: center;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+div.avatarHeader {
+  margin-top: 1.2rem;
+}
+
+.logoutbutton,
+.editprofilebutton {
+  background-color: #0dcaf0;
+  color: white;
+  border: none;
+  text-align: center;
+  margin-left: 3vh;
+  margin: 0.5rem;
+  padding: 0.1rem 0.7rem;
+  border-radius: 8px;
+}
+
+.logoutbutton:hover,
+.editprofilebutton:hover {
+  border: 2px solid #a8cf45;
+}
+
+img {
+  width: 6rem;
+}
+
+@media (min-width: 425px) {
+  img {
+    width: 8rem;
+  }
 }

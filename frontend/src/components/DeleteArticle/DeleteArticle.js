@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useToken } from "../../context/TokenContext";
 import { ErrorOrSucces } from "../ErrorOrSucces/ErrorOrSucces";
 
-import "./DeleteArticle.css";
-
 const DeleteArticle = (idArticle) => {
   let navigate = useNavigate();
   const [token] = useToken();

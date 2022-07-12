@@ -17,3 +17,10 @@ div.accordion > div {
   margin: 0;
   padding: 0;
 }
+
+@media (min-width: 768px) {
+  div.accordion {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}

@@ -12,40 +12,42 @@ const Header = () => {
   const [, setModal] = useModal();
 
   return (
-    <div className="allHeader">
-      {token ? (
-        <div className="logoHeader">
-          <NavLink to="/articles">
-            <img src="/logo732.png " alt="logo ViraLink" />
-          </NavLink>
-        </div>
-      ) : null}
-      {token ? (
-        <div className="avatarHeader">
-          <Accordion>
-            <button
-              className="btn btn-primary m-1"
-              onClick={() => {
-                localStorage.removeItem("token");
-                setToken(null);
-                navigate("/login");
-              }}
-            >
-              Log Out
-            </button>
-            <button
-              className="btn btn-primary m-1"
-              onClick={() => {
-                navigate("/modalpage");
-                setModal(<EditUser />);
-              }}
-            >
-              Edit Profile
-            </button>
-          </Accordion>
-        </div>
-      ) : null}
-    </div>
+    <nav>
+      <div className="allHeader">
+        {token ? (
+          <div className="logoHeader">
+            <NavLink to="/articles">
+              <img src="/logo732.png " alt="logo ViraLink" />
+            </NavLink>
+          </div>
+        ) : null}
+        {token ? (
+          <div className="avatarHeader">
+            <Accordion>
+              <button
+                className="logoutbutton"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  setToken(null);
+                  navigate("/login");
+                }}
+              >
+                Log Out
+              </button>
+              <button
+                className="editprofilebutton"
+                onClick={() => {
+                  navigate("/modalpage");
+                  setModal(<EditUser />);
+                }}
+              >
+                Edit Profile
+              </button>
+            </Accordion>
+          </div>
+        ) : null}
+      </div>
+    </nav>
   );
 };
 export default Header;

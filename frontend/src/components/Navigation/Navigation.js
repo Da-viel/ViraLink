@@ -14,7 +14,7 @@ const Navigation = ({ articles, setArticles }) => {
 
   return (
     <div className="container-fluid border shadow bg-body rounded fixed-bottom p-lg-5 bg-white ">
-      <div className="row justify-content-around mw-100 ">
+      <div className="row justify-content-between mw-200 ">
         <div className="col-2 col-sm-2 col-md-2 col-lg-12 p-2">
           <div className="navigationHome">
             <button
@@ -23,7 +23,7 @@ const Navigation = ({ articles, setArticles }) => {
             >
               🏠
             </button>
-            <p>HOME</p>
+            <p className="homebutton mx-4">HOME</p>
           </div>
         </div>
         <div className="col-2 col-sm-2 col-md-2 col-lg-12 p-2">
@@ -36,7 +36,7 @@ const Navigation = ({ articles, setArticles }) => {
             >
               🔎
             </button>
-            <p>SEARCH</p>
+            <p className="searchbutton mx-3">SEARCH</p>
           </div>
         </div>
         <div className="col-2 col-sm-2 col-md-2 col-lg-12 p-2">
@@ -52,7 +52,7 @@ const Navigation = ({ articles, setArticles }) => {
             >
               <h3>+</h3>
             </button>
-            <p>NEW ARTICLE</p>
+            <p className="addbutton mx-3">NEW ARTICLE</p>
           </div>
         </div>
       </div>

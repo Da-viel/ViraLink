@@ -49,7 +49,7 @@ const Article = ({ article }) => {
               <p>Avg. rating: {article.Rating_articles}</p>
             </div>
           ) : (
-            <p>Avg. rating: 0</p>
+            <p>Avg. rating: </p>
           )}
         </div>
       </div>
